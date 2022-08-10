@@ -12,7 +12,18 @@
 		2EB9C55128A2E4B9002806A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EB9C55028A2E4B9002806A9 /* Assets.xcassets */; };
 		2EB9C55428A2E4B9002806A9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EB9C55328A2E4B9002806A9 /* Preview Assets.xcassets */; };
 		2EB9C55C28A2E6F6002806A9 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB9C55B28A2E6F6002806A9 /* ComposableArchitecture */; };
+		2EB9C56428A3F75B002806A9 /* ComposableArchitecture_ToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB9C56328A3F75B002806A9 /* ComposableArchitecture_ToDoTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2EB9C56528A3F75B002806A9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2EB9C54128A2E4B6002806A9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2EB9C54828A2E4B6002806A9;
+			remoteInfo = "ComposableArchitecture-ToDo";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2EB9C54928A2E4B6002806A9 /* ComposableArchitecture-ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ComposableArchitecture-ToDo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -20,6 +31,8 @@
 		2EB9C54E28A2E4B6002806A9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2EB9C55028A2E4B9002806A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EB9C55328A2E4B9002806A9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2EB9C56128A3F75B002806A9 /* ComposableArchitecture-ToDoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ComposableArchitecture-ToDoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EB9C56328A3F75B002806A9 /* ComposableArchitecture_ToDoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableArchitecture_ToDoTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +44,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2EB9C55E28A3F75B002806A9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -38,6 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				2EB9C54B28A2E4B6002806A9 /* ComposableArchitecture-ToDo */,
+				2EB9C56228A3F75B002806A9 /* ComposableArchitecture-ToDoTests */,
 				2EB9C54A28A2E4B6002806A9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				2EB9C54928A2E4B6002806A9 /* ComposableArchitecture-ToDo.app */,
+				2EB9C56128A3F75B002806A9 /* ComposableArchitecture-ToDoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,6 +89,14 @@
 				2EB9C55328A2E4B9002806A9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2EB9C56228A3F75B002806A9 /* ComposableArchitecture-ToDoTests */ = {
+			isa = PBXGroup;
+			children = (
+				2EB9C56328A3F75B002806A9 /* ComposableArchitecture_ToDoTests.swift */,
+			);
+			path = "ComposableArchitecture-ToDoTests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -92,6 +122,24 @@
 			productReference = 2EB9C54928A2E4B6002806A9 /* ComposableArchitecture-ToDo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2EB9C56028A3F75B002806A9 /* ComposableArchitecture-ToDoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2EB9C56728A3F75B002806A9 /* Build configuration list for PBXNativeTarget "ComposableArchitecture-ToDoTests" */;
+			buildPhases = (
+				2EB9C55D28A3F75B002806A9 /* Sources */,
+				2EB9C55E28A3F75B002806A9 /* Frameworks */,
+				2EB9C55F28A3F75B002806A9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2EB9C56628A3F75B002806A9 /* PBXTargetDependency */,
+			);
+			name = "ComposableArchitecture-ToDoTests";
+			productName = "ComposableArchitecture-ToDoTests";
+			productReference = 2EB9C56128A3F75B002806A9 /* ComposableArchitecture-ToDoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -104,6 +152,10 @@
 				TargetAttributes = {
 					2EB9C54828A2E4B6002806A9 = {
 						CreatedOnToolsVersion = 13.4.1;
+					};
+					2EB9C56028A3F75B002806A9 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 2EB9C54828A2E4B6002806A9;
 					};
 				};
 			};
@@ -124,6 +176,7 @@
 			projectRoot = "";
 			targets = (
 				2EB9C54828A2E4B6002806A9 /* ComposableArchitecture-ToDo */,
+				2EB9C56028A3F75B002806A9 /* ComposableArchitecture-ToDoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -135,6 +188,13 @@
 			files = (
 				2EB9C55428A2E4B9002806A9 /* Preview Assets.xcassets in Resources */,
 				2EB9C55128A2E4B9002806A9 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2EB9C55F28A3F75B002806A9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,7 +210,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2EB9C55D28A3F75B002806A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EB9C56428A3F75B002806A9 /* ComposableArchitecture_ToDoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2EB9C56628A3F75B002806A9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2EB9C54828A2E4B6002806A9 /* ComposableArchitecture-ToDo */;
+			targetProxy = 2EB9C56528A3F75B002806A9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2EB9C55528A2E4B9002806A9 /* Debug */ = {
@@ -325,6 +401,42 @@
 			};
 			name = Release;
 		};
+		2EB9C56828A3F75B002806A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y2NMD7UXB;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lramirezsuarez.pointfree.ComposableArchitecture-ToDoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComposableArchitecture-ToDo.app/ComposableArchitecture-ToDo";
+			};
+			name = Debug;
+		};
+		2EB9C56928A3F75B002806A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y2NMD7UXB;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lramirezsuarez.pointfree.ComposableArchitecture-ToDoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComposableArchitecture-ToDo.app/ComposableArchitecture-ToDo";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -342,6 +454,15 @@
 			buildConfigurations = (
 				2EB9C55828A2E4B9002806A9 /* Debug */,
 				2EB9C55928A2E4B9002806A9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2EB9C56728A3F75B002806A9 /* Build configuration list for PBXNativeTarget "ComposableArchitecture-ToDoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2EB9C56828A3F75B002806A9 /* Debug */,
+				2EB9C56928A3F75B002806A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
