@@ -19,7 +19,7 @@ struct ComposableArchitecture_ToDoApp: App {
                     Todo(description: "Hand Soap", id: UUID(), isComplete: true)
                 ]),
                 reducer: appReducer,
-                environment: AppEnvironment()))
+                environment: AppEnvironment(uuid: UUID.init)))
         }
     }
 }

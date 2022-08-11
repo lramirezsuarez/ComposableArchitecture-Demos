@@ -14,7 +14,7 @@ struct Todo: Equatable, Identifiable {
     var isComplete = false
 }
 
-enum TodoAction {
+enum TodoAction: Equatable {
     case checkBoxTapped
     case textFieldChanged(String)
 }
@@ -35,29 +35,44 @@ let todoReducer = Reducer<Todo, TodoAction, TodoEnvironment> { state, action, en
 }
 
 struct AppState: Equatable {
-    var todos: IdentifiedArrayOf<Todo>
+    var todos: [Todo] = []
 }
 
-enum AppAction {
+enum AppAction: Equatable {
     case addButtonTapped
-    case todo(id: Todo.ID, action: TodoAction)
+    case todo(index: Int, action: TodoAction)
+    case todoDelayedCompleted
 }
 
 struct AppEnvironment {
-    
+    var uuid: () -> UUID
 }
 
 let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
     todoReducer.forEach(
         state: \.todos,
-    action: /AppAction.todo(id:action:),
+    action: /AppAction.todo(index:action:),
     environment: { _ in TodoEnvironment() }),
     Reducer { state, action, environment in
         switch action {
         case .addButtonTapped:
-            state.todos.insert(Todo(id: UUID()), at: 0)
+            state.todos.insert(Todo(id: environment.uuid()), at: 0)
             return .none
-        case .todo(id: let id, action: let action):
+        case .todo(index: _, action: .checkBoxTapped):
+            struct CancelDelayId: Hashable {}
+            
+            return Effect(value: AppAction.todoDelayedCompleted)
+                    .delay(for: 1, scheduler: DispatchQueue.main)
+                    .eraseToEffect()
+                    .cancellable(id: CancelDelayId(), cancelInFlight: true)
+        case .todo(index: let index, action: let action):
+            return .none
+        case .todoDelayedCompleted:
+            state.todos = state.todos.enumerated().sorted { lhs, rhs in
+                !lhs.element.isComplete && rhs.element.isComplete || lhs.offset < rhs.offset
+            }
+            .map(\.element)
+            
             return .none
         }
     }
@@ -72,7 +87,7 @@ struct ContentView: View {
                 List {
                     ForEachStore(
                         self.store.scope(state: \.todos ,
-                                         action: AppAction.todo(id:action:)),
+                                         action: AppAction.todo(index:action:)),
                         content: TodoView.init(store:))
                 }
                 .navigationTitle("Todos")
@@ -117,6 +132,6 @@ struct ContentView_Previews: PreviewProvider {
                 Todo(description: "Hand Soap", id: UUID(), isComplete: true)
             ]),
             reducer: appReducer,
-            environment: AppEnvironment()))
+            environment: AppEnvironment(uuid: UUID.init)))
     }
 }

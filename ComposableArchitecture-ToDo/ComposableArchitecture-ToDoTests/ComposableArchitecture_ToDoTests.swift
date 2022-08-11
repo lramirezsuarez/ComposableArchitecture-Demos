@@ -6,30 +6,61 @@
 //
 
 import XCTest
+import ComposableArchitecture
+@testable import ComposableArchitecture_ToDo
 
 class ComposableArchitecture_ToDoTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testCompletingTodo() {
+        let uuid = UUID()
+        let store = TestStore(
+            initialState: AppState(todos: [
+                Todo(description: "Milk", id: uuid, isComplete: false)
+            ]),
+            reducer: appReducer,
+            environment: AppEnvironment(uuid: { fatalError()}))
+        
+        store.assert(
+            .send(.todo(index: 0, action: .checkBoxTapped)) {
+                $0.todos[0].isComplete = true
+            }
+        )
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testAddTodo() {
+        let store = TestStore(
+            initialState: AppState(),
+            reducer: appReducer,
+            environment: AppEnvironment(uuid: { UUID(uuidString: "DEADBEEF-DEAD-BEEF-DEAD-DEADBEEFDEAD")! })
+        )
+        
+        store.assert(.send(.addButtonTapped) {
+            $0.todos = [
+                Todo(description: "",
+                     id: UUID(uuidString: "DEADBEEF-DEAD-BEEF-DEAD-DEADBEEFDEAD")!,
+                     isComplete: false)
+            ]
+        })
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testTodoSorting() {
+        let uuid = UUID(uuidString: "DEADBEEF-DEAD-BEEF-DEAD-DEADBEEFDEDA")!
+        let uuid1 = UUID(uuidString: "DEADBEEF-DEAD-BEEF-DEAD-DEADBEEFDEAD")!
+        
+        let store = TestStore(
+            initialState: AppState(todos: [
+                Todo(description: "Milk", id: uuid, isComplete: false),
+                Todo(description: "Eggs", id: uuid1, isComplete: false)
+            ]),
+            reducer: appReducer,
+            environment: AppEnvironment(uuid: { fatalError() }))
+        
+        store.assert(
+            .send(.todo(index: 0, action: .checkBoxTapped)) {
+                $0.todos[0].isComplete = true
+                $0.todos.swapAt(0, 1)
+            }
+        )
     }
 
 }
