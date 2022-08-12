@@ -45,6 +45,7 @@ enum AppAction: Equatable {
 }
 
 struct AppEnvironment {
+    var mainQueue: AnySchedulerOf<DispatchQueue>
     var uuid: () -> UUID
 }
 
@@ -62,9 +63,10 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
             struct CancelDelayId: Hashable {}
             
             return Effect(value: AppAction.todoDelayedCompleted)
-                    .delay(for: 1, scheduler: DispatchQueue.main)
-                    .eraseToEffect()
-                    .cancellable(id: CancelDelayId(), cancelInFlight: true)
+                .debounce(id: CancelDelayId(), for: 1, scheduler: environment.mainQueue)
+//                    .delay(for: 1, scheduler: DispatchQueue.main)
+//                    .eraseToEffect()
+//                    .cancellable(id: CancelDelayId(), cancelInFlight: true)
         case .todo(index: let index, action: let action):
             return .none
         case .todoDelayedCompleted:
@@ -132,6 +134,8 @@ struct ContentView_Previews: PreviewProvider {
                 Todo(description: "Hand Soap", id: UUID(), isComplete: true)
             ]),
             reducer: appReducer,
-            environment: AppEnvironment(uuid: UUID.init)))
+            environment: AppEnvironment(
+                mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+                uuid: UUID.init)))
     }
 }

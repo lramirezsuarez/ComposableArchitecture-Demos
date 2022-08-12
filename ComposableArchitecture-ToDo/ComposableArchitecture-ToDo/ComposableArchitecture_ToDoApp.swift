@@ -19,7 +19,9 @@ struct ComposableArchitecture_ToDoApp: App {
                     Todo(description: "Hand Soap", id: UUID(), isComplete: true)
                 ]),
                 reducer: appReducer,
-                environment: AppEnvironment(uuid: UUID.init)))
+                environment: AppEnvironment(
+                    mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+                    uuid: UUID.init)))
         }
     }
 }

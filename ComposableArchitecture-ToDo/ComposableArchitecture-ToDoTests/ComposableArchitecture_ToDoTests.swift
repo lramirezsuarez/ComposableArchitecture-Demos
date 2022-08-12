@@ -10,6 +10,7 @@ import ComposableArchitecture
 @testable import ComposableArchitecture_ToDo
 
 class ComposableArchitecture_ToDoTests: XCTestCase {
+    let scheduler = DispatchQueue.test
 
     func testCompletingTodo() {
         let uuid = UUID()
@@ -18,12 +19,18 @@ class ComposableArchitecture_ToDoTests: XCTestCase {
                 Todo(description: "Milk", id: uuid, isComplete: false)
             ]),
             reducer: appReducer,
-            environment: AppEnvironment(uuid: { fatalError()}))
+            environment: AppEnvironment(
+                mainQueue: scheduler.eraseToAnyScheduler(),
+                uuid: { fatalError()}))
         
         store.assert(
             .send(.todo(index: 0, action: .checkBoxTapped)) {
                 $0.todos[0].isComplete = true
-            }
+            },
+            .do {
+                self.scheduler.advance(by: 1)
+            },
+            .receive(.todoDelayedCompleted)
         )
     }
     
@@ -31,7 +38,9 @@ class ComposableArchitecture_ToDoTests: XCTestCase {
         let store = TestStore(
             initialState: AppState(),
             reducer: appReducer,
-            environment: AppEnvironment(uuid: { UUID(uuidString: "DEADBEEF-DEAD-BEEF-DEAD-DEADBEEFDEAD")! })
+            environment: AppEnvironment(
+                mainQueue: scheduler.eraseToAnyScheduler(),
+                uuid: { UUID(uuidString: "DEADBEEF-DEAD-BEEF-DEAD-DEADBEEFDEAD")! })
         )
         
         store.assert(.send(.addButtonTapped) {
@@ -53,13 +62,51 @@ class ComposableArchitecture_ToDoTests: XCTestCase {
                 Todo(description: "Eggs", id: uuid1, isComplete: false)
             ]),
             reducer: appReducer,
-            environment: AppEnvironment(uuid: { fatalError() }))
+            environment: AppEnvironment(
+                mainQueue: scheduler.eraseToAnyScheduler(),
+                uuid: { fatalError() }))
         
         store.assert(
             .send(.todo(index: 0, action: .checkBoxTapped)) {
                 $0.todos[0].isComplete = true
+            },
+            .do {
+                self.scheduler.advance(by: 1)
+            },
+            .receive(.todoDelayedCompleted) {
                 $0.todos.swapAt(0, 1)
             }
+        )
+    }
+    
+    func testTodoSortingCancelation() {
+        let uuid = UUID(uuidString: "DEADBEEF-DEAD-BEEF-DEAD-DEADBEEFDEDA")!
+        let uuid1 = UUID(uuidString: "DEADBEEF-DEAD-BEEF-DEAD-DEADBEEFDEAD")!
+        
+        let store = TestStore(
+            initialState: AppState(todos: [
+                Todo(description: "Milk", id: uuid, isComplete: false),
+                Todo(description: "Eggs", id: uuid1, isComplete: false)
+            ]),
+            reducer: appReducer,
+            environment: AppEnvironment(
+                mainQueue: scheduler.eraseToAnyScheduler(),
+                uuid: { fatalError() }))
+        
+        store.assert(
+            .send(.todo(index: 0, action: .checkBoxTapped)) {
+                $0.todos[0].isComplete = true
+            },
+            .do {
+                self.scheduler.advance(by: 0.5)
+            },
+            .send(.todo(index: 0, action: .checkBoxTapped)) {
+                $0.todos[0].isComplete = false
+            },
+            .do {
+                self.scheduler.advance(by: 1)
+            },
+            .receive(.todoDelayedCompleted)
         )
     }
 
