@@ -29,9 +29,9 @@ struct IsPrimeModalShown: View {
     
     func addRemoveFavoritePrime() {
         if primeInFavorites() {
-            self.state.favoritesPrimes.removeAll(where: { $0 == self.state.count })
+            self.state.removeFavoritePrime()
         } else {
-            self.state.favoritesPrimes.append(self.state.count)
+            self.state.addFavoritePrime()
         }
     }
 }
