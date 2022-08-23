@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CounterView: View {
-    @ObservedObject var state: AppState
+    @ObservedObject var store: Store<AppState, AppAction>
     
     @State var isPrimeModalShown: Bool = false
     @State var alertNthPrime: Bool = false
@@ -18,11 +18,11 @@ struct CounterView: View {
     var body: some View {
         VStack {
             HStack {
-                Button(action: { self.state.count -= 1 }) {
+                Button(action: { self.store.send(.counter(.decrementTap)) }) {
                     Image(systemName: "minus")
                 }
-                Text("\(self.state.count)")
-                Button(action: { self.state.count += 1 }) {
+                Text("\(self.store.value.count)")
+                Button(action: { self.store.send(.counter(.incrementTap)) }) {
                     Image(systemName: "plus")
                 }
             }.padding()
@@ -33,7 +33,7 @@ struct CounterView: View {
             }.padding()
             HStack {
                 Button(action: { nthPrimeButtonAction() }) {
-                    Text("What is the \(ordinal(self.state.count)) prime?")
+                    Text("What is the \(ordinal(self.store.value.count)) prime?")
                 }
                 .disabled(self.isNthPrimeButtonDisabled)
             }.padding()
@@ -41,19 +41,19 @@ struct CounterView: View {
         .font(.title)
         .navigationBarTitle("Counter Demo")
         .sheet(isPresented: self.$isPrimeModalShown, onDismiss: { self.isPrimeModalShown = false }) {
-            IsPrimeModalShown(state: self.state)
+            IsPrimeModalShown(store: self.store)
         }
-        .alert("\(self.state.count)nth Prime",
+        .alert("\(self.store.value.count)nth Prime",
                isPresented: self.$alertNthPrime,
                presenting: self.nthPrimeReceived) { _ in } message: { primeReceived in
-            Text("The \(self.state.count)nth Prime received is \(primeReceived)")
+            Text("The \(self.store.value.count)nth Prime received is \(primeReceived)")
         }
 
     }
     
     func nthPrimeButtonAction() {
         self.isNthPrimeButtonDisabled = true
-        nthPrime(self.state.count) { nthPrime in
+        nthPrime(self.store.value.count) { nthPrime in
             self.isNthPrimeButtonDisabled = false
             guard let nthPrime = nthPrime else {
                 return
@@ -67,6 +67,6 @@ struct CounterView: View {
 
 struct CounterView_Previews: PreviewProvider {
     static var previews: some View {
-        CounterView(state: .init())
+        CounterView(store: .init(initialValue: .init(), reducer: appReducer))
     }
 }
