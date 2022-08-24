@@ -19,6 +19,9 @@
 		2E90E2BB28AED8EF0068A806 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E2BA28AED8EF0068A806 /* Helpers.swift */; };
 		2E90E2BD28AED9160068A806 /* WolframAlpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E2BC28AED9160068A806 /* WolframAlpha.swift */; };
 		2E90E2BF28AEDF930068A806 /* FavoritesPrimesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E2BE28AEDF930068A806 /* FavoritesPrimesView.swift */; };
+		2EE6B47F28B68962004BC9A8 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE6B47E28B68962004BC9A8 /* Actions.swift */; };
+		2EE6B48128B6898C004BC9A8 /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE6B48028B6898C004BC9A8 /* Reducers.swift */; };
+		2EE6B48328B689BB004BC9A8 /* Store+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE6B48228B689BB004BC9A8 /* Store+State.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,9 @@
 		2E90E2BA28AED8EF0068A806 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		2E90E2BC28AED9160068A806 /* WolframAlpha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WolframAlpha.swift; sourceTree = "<group>"; };
 		2E90E2BE28AEDF930068A806 /* FavoritesPrimesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPrimesView.swift; sourceTree = "<group>"; };
+		2EE6B47E28B68962004BC9A8 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		2EE6B48028B6898C004BC9A8 /* Reducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducers.swift; sourceTree = "<group>"; };
+		2EE6B48228B689BB004BC9A8 /* Store+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+State.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,9 @@
 			isa = PBXGroup;
 			children = (
 				2E90E28C28AECA670068A806 /* StateManagementApp.swift */,
+				2EE6B47E28B68962004BC9A8 /* Actions.swift */,
+				2EE6B48028B6898C004BC9A8 /* Reducers.swift */,
+				2EE6B48228B689BB004BC9A8 /* Store+State.swift */,
 				2E90E28E28AECA670068A806 /* ContentView.swift */,
 				2E90E2B628AED86B0068A806 /* CounterView.swift */,
 				2E90E2B828AED89B0068A806 /* IsPrimeModalShown.swift */,
@@ -273,10 +282,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E90E28F28AECA670068A806 /* ContentView.swift in Sources */,
+				2EE6B47F28B68962004BC9A8 /* Actions.swift in Sources */,
 				2E90E28D28AECA670068A806 /* StateManagementApp.swift in Sources */,
+				2EE6B48328B689BB004BC9A8 /* Store+State.swift in Sources */,
 				2E90E2BF28AEDF930068A806 /* FavoritesPrimesView.swift in Sources */,
 				2E90E2B728AED86B0068A806 /* CounterView.swift in Sources */,
 				2E90E2BD28AED9160068A806 /* WolframAlpha.swift in Sources */,
+				2EE6B48128B6898C004BC9A8 /* Reducers.swift in Sources */,
 				2E90E2BB28AED8EF0068A806 /* Helpers.swift in Sources */,
 				2E90E2B928AED89B0068A806 /* IsPrimeModalShown.swift in Sources */,
 			);
