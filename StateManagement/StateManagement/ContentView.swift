@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Overture
 
 struct ContentView: View {
     @ObservedObject var store: Store<AppState, AppAction>
@@ -27,6 +28,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(store: .init(initialValue: .init(), reducer: appReducer))
+        ContentView(store: .init(initialValue: .init(), reducer: logging(activityFeed(appReducer))))
     }
 }

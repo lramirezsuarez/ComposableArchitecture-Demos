@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Overture
 
 @main
 struct StateManagementApp: App {
@@ -14,7 +15,13 @@ struct StateManagementApp: App {
             ContentView(
                 store: .init(
                     initialValue: .init(),
-                    reducer: appReducer
+                    reducer: with(
+                        appReducer,
+                        compose(
+                            logging,
+                            activityFeed
+                        )
+                    )
                 )
             )
         }
