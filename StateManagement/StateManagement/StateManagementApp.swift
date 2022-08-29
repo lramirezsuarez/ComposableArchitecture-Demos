@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Overture
+import ComposableArchitecture
 
 @main
 struct StateManagementApp: App {

@@ -5,21 +5,10 @@
 //  Created by Luis Alejandro Ramirez Suarez on 24/08/22.
 //
 
+import Counter
 import Foundation
-
-enum CounterAction {
-    case decrementTap
-    case incrementTap
-}
-
-enum PrimeModalAction {
-    case saveFavoritePrimeTapped
-    case removeFavoritePrimeTapped
-}
-
-enum FavoritePrimesAction {
-    case deleteFavoritePrimes(IndexSet)
-}
+import FavoritesPrimes
+import PrimeModal
 
 enum AppAction {
     case counter(CounterAction)

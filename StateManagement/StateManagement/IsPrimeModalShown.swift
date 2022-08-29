@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct IsPrimeModalShown: View {
     @ObservedObject var store: Store<AppState, AppAction>

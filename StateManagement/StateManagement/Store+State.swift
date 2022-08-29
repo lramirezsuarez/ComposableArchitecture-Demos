@@ -5,7 +5,7 @@
 //  Created by Luis Alejandro Ramirez Suarez on 24/08/22.
 //
 
-import Foundation
+import PrimeModal
 
 struct AppState {
     var count: Int = 0
@@ -30,16 +30,14 @@ struct AppState {
     }
 }
 
-final class Store<Value, Action>: ObservableObject {
-    let reducer: (inout Value, Action) -> Void
-    @Published private(set) var value: Value
-    
-    init(initialValue: Value, reducer: @escaping (inout Value, Action) -> Void) {
-        self.value = initialValue
-        self.reducer = reducer
-    }
-    
-    func send(_ action: Action) {
-        self.reducer(&self.value, action)
+extension AppState {
+    var primeModal: PrimeModalState {
+        get {
+            PrimeModalState(count: self.count, favoritesPrimes: self.favoritesPrimes)
+        }
+        set {
+            self.count = newValue.count
+            self.favoritesPrimes = newValue.favoritesPrimes
+        }
     }
 }
