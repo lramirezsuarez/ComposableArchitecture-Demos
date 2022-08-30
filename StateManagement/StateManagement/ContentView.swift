@@ -15,10 +15,10 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                NavigationLink(destination: CounterView(store: self.store)) {
+                NavigationLink(destination: CounterView(store: self.store.view { ($0.count, $0.favoritesPrimes) })) {
                     Text("Counter demo")
                 }
-                NavigationLink(destination: FavoritesPrimesView(store: self.store)) {
+                NavigationLink(destination: FavoritesPrimesView(store: self.store.view { $0.favoritesPrimes })) {
                     Text("Favorite primes")
                 }
             }
@@ -27,8 +27,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(store: .init(initialValue: .init(), reducer: logging(activityFeed(appReducer))))
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView(store: .init(initialValue: .init(), reducer: logging(activityFeed(appReducer))))
+//    }
+//}

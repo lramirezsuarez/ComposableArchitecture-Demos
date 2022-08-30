@@ -7,9 +7,10 @@
 
 import SwiftUI
 import ComposableArchitecture
+import PrimeModal
 
 struct IsPrimeModalShown: View {
-    @ObservedObject var store: Store<AppState, AppAction>
+    @ObservedObject var store: Store<PrimeModalState, AppAction>
     var body: some View {
         VStack {
             Text("The number \(self.store.value.count) \(isPrime() ? "Is Prime" : "Is Not Prime")")
@@ -39,8 +40,8 @@ struct IsPrimeModalShown: View {
     }
 }
 
-struct IsPrimeModalShown_Previews: PreviewProvider {
-    static var previews: some View {
-        IsPrimeModalShown(store: .init(initialValue: .init(), reducer: appReducer))
-    }
-}
+//struct IsPrimeModalShown_Previews: PreviewProvider {
+//    static var previews: some View {
+//        IsPrimeModalShown(store: .init(initialValue: .init(), reducer: appReducer))
+//    }
+//}

@@ -7,13 +7,14 @@
 
 import SwiftUI
 import ComposableArchitecture
+import FavoritesPrimes
 
 struct FavoritesPrimesView: View {
-    @ObservedObject var store: Store<AppState, AppAction>
+    @ObservedObject var store: Store<[Int], AppAction>
     
     var body: some View {
         List {
-            ForEach(store.value.favoritesPrimes, id: \.self) { prime in
+            ForEach(store.value, id: \.self) { prime in
                 Text("\(prime)")
             }
             .onDelete { indexSet in
@@ -23,9 +24,9 @@ struct FavoritesPrimesView: View {
         .navigationTitle("Favorite Primes")
     }
 }
-
-struct FavoritesPrimesView_Previews: PreviewProvider {
-    static var previews: some View {
-        FavoritesPrimesView(store: .init(initialValue: .init(), reducer: appReducer))
-    }
-}
+//
+//struct FavoritesPrimesView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FavoritesPrimesView(store: .init(initialValue: .init(), reducer: appReducer))
+//    }
+//}
