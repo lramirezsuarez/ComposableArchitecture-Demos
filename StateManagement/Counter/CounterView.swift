@@ -9,17 +9,26 @@ import SwiftUI
 import ComposableArchitecture
 import PrimeModal
 
-typealias CounterViewState = (count: Int, favoritesPrimes: [Int])
+public typealias CounterViewState = (count: Int, favoritesPrimes: [Int])
 
-struct CounterView: View {
-    @ObservedObject var store: Store<CounterViewState, AppAction>
+public enum CounterViewAction {
+    case counter(CounterAction)
+    case primeModal(PrimeModalAction)
+}
+
+public struct CounterView: View {
+    @ObservedObject var store: Store<CounterViewState, CounterViewAction>
     
     @State var isPrimeModalShown: Bool = false
     @State var alertNthPrime: Bool = false
     @State var nthPrimeReceived: Int?
     @State var isNthPrimeButtonDisabled = false
     
-    var body: some View {
+    public init(store: Store<CounterViewState, CounterViewAction>) {
+        self.store = store
+    }
+    
+    public var body: some View {
         VStack {
             HStack {
                 Button(action: { self.store.send(.counter(.decrementTap)) }) {
@@ -45,7 +54,10 @@ struct CounterView: View {
         .font(.title)
         .navigationBarTitle("Counter Demo")
         .sheet(isPresented: self.$isPrimeModalShown, onDismiss: { self.isPrimeModalShown = false }) {
-            IsPrimeModalShown(store: self.store.view { PrimeModalState(count: $0.count, favoritesPrimes: $0.favoritesPrimes) })
+            IsPrimeModalShown(store: self.store.view(
+                value: { PrimeModalState(count: $0.count, favoritesPrimes: $0.favoritesPrimes) },
+                action: { .primeModal($0) })
+            )
         }
         .alert("\(self.store.value.count)nth Prime",
                isPresented: self.$alertNthPrime,

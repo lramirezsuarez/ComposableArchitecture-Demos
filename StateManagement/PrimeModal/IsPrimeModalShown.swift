@@ -7,11 +7,15 @@
 
 import SwiftUI
 import ComposableArchitecture
-import PrimeModal
 
-struct IsPrimeModalShown: View {
-    @ObservedObject var store: Store<PrimeModalState, AppAction>
-    var body: some View {
+public struct IsPrimeModalShown: View {
+    @ObservedObject var store: Store<PrimeModalState, PrimeModalAction>
+    
+    public init(store: Store<PrimeModalState, PrimeModalAction>) {
+        self.store = store
+    }
+    
+    public var body: some View {
         VStack {
             Text("The number \(self.store.value.count) \(isPrime() ? "Is Prime" : "Is Not Prime")")
             if isPrime() {
@@ -33,9 +37,9 @@ struct IsPrimeModalShown: View {
     
     func addRemoveFavoritePrime() {
         if primeInFavorites() {
-            self.store.send(.primeModal(.removeFavoritePrimeTapped))
+            self.store.send(.removeFavoritePrimeTapped)
         } else {
-            self.store.send(.primeModal(.saveFavoritePrimeTapped))
+            self.store.send(.saveFavoritePrimeTapped)
         }
     }
 }
