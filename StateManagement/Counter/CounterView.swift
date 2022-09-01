@@ -9,13 +9,6 @@ import SwiftUI
 import ComposableArchitecture
 import PrimeModal
 
-public typealias CounterViewState = (count: Int, favoritesPrimes: [Int])
-
-public enum CounterViewAction {
-    case counter(CounterAction)
-    case primeModal(PrimeModalAction)
-}
-
 public struct CounterView: View {
     @ObservedObject var store: Store<CounterViewState, CounterViewAction>
     
@@ -81,8 +74,13 @@ public struct CounterView: View {
     }
 }
 
-//struct CounterView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CounterView(store: .init(initialValue: .init(), reducer: appReducer))
-//    }
-//}
+struct CounterView_Previews: PreviewProvider {
+    static var previews: some View {
+        CounterView(
+            store: Store<CounterViewState, CounterViewAction>(
+                initialValue: (1_000_000, []),
+                reducer: counterViewReducer
+            )
+        )
+    }
+}

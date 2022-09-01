@@ -27,9 +27,14 @@ public struct FavoritesPrimesView: View {
         .navigationTitle("Favorite Primes")
     }
 }
-//
-//struct FavoritesPrimesView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FavoritesPrimesView(store: .init(initialValue: .init(), reducer: appReducer))
-//    }
-//}
+
+struct FavoritesPrimesView_Previews: PreviewProvider {
+    static var previews: some View {
+        FavoritesPrimesView(
+            store: Store<[Int], FavoritePrimesAction>(
+                initialValue: [2,3,4,5,6],
+                reducer: favoritePrimesReducer
+            )
+        )
+    }
+}

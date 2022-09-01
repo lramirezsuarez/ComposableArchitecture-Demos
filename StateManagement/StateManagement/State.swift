@@ -1,11 +1,11 @@
 //
-//  Store+State.swift
+//  State.swift
 //  StateManagement
 //
 //  Created by Luis Alejandro Ramirez Suarez on 24/08/22.
 //
 
-import PrimeModal
+import Counter
 
 struct AppState {
     var count: Int = 0
@@ -31,9 +31,9 @@ struct AppState {
 }
 
 extension AppState {
-    var primeModal: PrimeModalState {
+    var counterView: CounterViewState {
         get {
-            PrimeModalState(count: self.count, favoritesPrimes: self.favoritesPrimes)
+            CounterViewState(count: self.count, favoritesPrimes: self.favoritesPrimes)
         }
         set {
             self.count = newValue.count

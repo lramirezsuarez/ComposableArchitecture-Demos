@@ -5,15 +5,7 @@
 //  Created by Luis Alejandro Ramirez Suarez on 29/08/22.
 //
 
-public struct PrimeModalState {
-    public var count: Int
-    public var favoritesPrimes: [Int]
-    
-    public init(count: Int, favoritesPrimes: [Int]) {
-        self.count = count
-        self.favoritesPrimes = favoritesPrimes
-    }
-}
+public typealias PrimeModalState = (count: Int, favoritesPrimes: [Int])
 
 public enum PrimeModalAction {
     case saveFavoritePrimeTapped

@@ -8,6 +8,9 @@
 import SwiftUI
 import Overture
 import ComposableArchitecture
+import FavoritesPrimes
+import PrimeModal
+import Counter
 
 @main
 struct StateManagementApp: App {

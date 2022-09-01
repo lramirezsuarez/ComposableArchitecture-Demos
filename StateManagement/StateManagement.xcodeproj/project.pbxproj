@@ -49,7 +49,7 @@
 		2E90E2AA28AECA670068A806 /* StateManagementUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E2A928AECA670068A806 /* StateManagementUITestsLaunchTests.swift */; };
 		2EE6B47F28B68962004BC9A8 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE6B47E28B68962004BC9A8 /* Actions.swift */; };
 		2EE6B48128B6898C004BC9A8 /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE6B48028B6898C004BC9A8 /* Reducers.swift */; };
-		2EE6B48328B689BB004BC9A8 /* Store+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE6B48228B689BB004BC9A8 /* Store+State.swift */; };
+		2EE6B48328B689BB004BC9A8 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE6B48228B689BB004BC9A8 /* State.swift */; };
 		2EE6B48628B9210A004BC9A8 /* Overture in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE6B48528B9210A004BC9A8 /* Overture */; };
 /* End PBXBuildFile section */
 
@@ -213,7 +213,7 @@
 		2E90E2BE28AEDF930068A806 /* FavoritesPrimesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPrimesView.swift; sourceTree = "<group>"; };
 		2EE6B47E28B68962004BC9A8 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		2EE6B48028B6898C004BC9A8 /* Reducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducers.swift; sourceTree = "<group>"; };
-		2EE6B48228B689BB004BC9A8 /* Store+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+State.swift"; sourceTree = "<group>"; };
+		2EE6B48228B689BB004BC9A8 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,7 +425,7 @@
 				2E90E28C28AECA670068A806 /* StateManagementApp.swift */,
 				2EE6B47E28B68962004BC9A8 /* Actions.swift */,
 				2EE6B48028B6898C004BC9A8 /* Reducers.swift */,
-				2EE6B48228B689BB004BC9A8 /* Store+State.swift */,
+				2EE6B48228B689BB004BC9A8 /* State.swift */,
 				2E90E28E28AECA670068A806 /* ContentView.swift */,
 				2E90E29028AECA670068A806 /* Assets.xcassets */,
 				2E90E29228AECA670068A806 /* Preview Content */,
@@ -950,7 +950,7 @@
 				2E90E28F28AECA670068A806 /* ContentView.swift in Sources */,
 				2EE6B47F28B68962004BC9A8 /* Actions.swift in Sources */,
 				2E90E28D28AECA670068A806 /* StateManagementApp.swift in Sources */,
-				2EE6B48328B689BB004BC9A8 /* Store+State.swift in Sources */,
+				2EE6B48328B689BB004BC9A8 /* State.swift in Sources */,
 				2EE6B48128B6898C004BC9A8 /* Reducers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

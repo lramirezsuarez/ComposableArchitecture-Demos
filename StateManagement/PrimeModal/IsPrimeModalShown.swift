@@ -44,8 +44,13 @@ public struct IsPrimeModalShown: View {
     }
 }
 
-//struct IsPrimeModalShown_Previews: PreviewProvider {
-//    static var previews: some View {
-//        IsPrimeModalShown(store: .init(initialValue: .init(), reducer: appReducer))
-//    }
-//}
+struct IsPrimeModalShown_Previews: PreviewProvider {
+    static var previews: some View {
+        IsPrimeModalShown(
+            store: Store<PrimeModalState, PrimeModalAction>(
+                initialValue: PrimeModalState(count: 2, favoritesPrimes: [2,3,4,5,6]),
+                reducer: primeModalReducer
+            )
+        )
+    }
+}
