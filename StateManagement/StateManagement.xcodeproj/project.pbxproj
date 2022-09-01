@@ -281,11 +281,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E6E435B28BD139C000ED8AE /* FavoritesPrimes.framework in Frameworks */,
-				2EE6B48628B9210A004BC9A8 /* Overture in Frameworks */,
-				2E6E431628BD1361000ED8AE /* Counter.framework in Frameworks */,
-				2E6E433928BD138B000ED8AE /* PrimeModal.framework in Frameworks */,
 				2E6E437D28BD13CD000ED8AE /* ComposableArchitecture.framework in Frameworks */,
+				2E6E433928BD138B000ED8AE /* PrimeModal.framework in Frameworks */,
+				2E6E435B28BD139C000ED8AE /* FavoritesPrimes.framework in Frameworks */,
+				2E6E431628BD1361000ED8AE /* Counter.framework in Frameworks */,
+				2EE6B48628B9210A004BC9A8 /* Overture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,10 +656,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				2E6E431528BD1361000ED8AE /* PBXTargetDependency */,
-				2E6E433828BD138B000ED8AE /* PBXTargetDependency */,
-				2E6E435A28BD139C000ED8AE /* PBXTargetDependency */,
 				2E6E437C28BD13CD000ED8AE /* PBXTargetDependency */,
+				2E6E433828BD138B000ED8AE /* PBXTargetDependency */,
+				2E6E431528BD1361000ED8AE /* PBXTargetDependency */,
+				2E6E435A28BD139C000ED8AE /* PBXTargetDependency */,
 			);
 			name = StateManagement;
 			packageProductDependencies = (
