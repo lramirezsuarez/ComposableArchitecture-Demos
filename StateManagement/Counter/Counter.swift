@@ -43,14 +43,14 @@ public enum CounterAction {
 }
 
 
-public func counterReducer(state: inout Int, action: CounterAction) -> Effect {
+public func counterReducer(state: inout Int, action: CounterAction) -> [Effect<CounterAction>] {
     switch action {
     case .decrementTap:
         state -= 1
-        return {}
+        return []
     case .incrementTap:
         state += 1
-        return {}
+        return []
     }
 }
 
