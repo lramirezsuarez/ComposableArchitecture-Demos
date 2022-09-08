@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ComposableArchitecture
 
 let wolframAlphaApiKey = "T4YK83-U3RT7VG6YE"
 
@@ -26,7 +27,7 @@ struct WolframAlphaResult: Decodable {
     }
 }
 
-func wolframAlpha(query: String, callback: @escaping (WolframAlphaResult?) -> Void) -> Void {
+func wolframAlpha(query: String) -> Effect<WolframAlphaResult?> {
     var components = URLComponents(string: "https://api.wolframalpha.com/v2/query")!
     components.queryItems = [
         URLQueryItem(name: "input", value: query),
@@ -35,12 +36,6 @@ func wolframAlpha(query: String, callback: @escaping (WolframAlphaResult?) -> Vo
         URLQueryItem(name: "appid", value: wolframAlphaApiKey),
     ]
     
-    URLSession.shared.dataTask(with: components.url(relativeTo: nil)!) { data, response, error in
-        callback(
-            data
-                .flatMap { try? JSONDecoder().decode(WolframAlphaResult.self, from: $0) }
-        )
-    }
-    .resume()
+    return dataTask(with: components.url(relativeTo: nil)!).decode(as: WolframAlphaResult.self)
 }
 

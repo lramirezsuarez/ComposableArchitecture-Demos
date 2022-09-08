@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ComposableArchitecture
 
 func ordinal(_ n: Int) -> String {
     let formatter = NumberFormatter()
@@ -13,19 +14,17 @@ func ordinal(_ n: Int) -> String {
     return formatter.string(for: n) ?? ""
 }
 
-func nthPrime(_ n: Int, callback: @escaping (Int?) -> Void) -> Void {
-    wolframAlpha(query: "prime \(n)") { result in
-        callback(
-            result
-                .flatMap {
-                    $0.queryresult
-                        .pods
-                        .first(where: { $0.primary == .some(true) })?
-                        .subpods
-                        .first?
-                        .plaintext
-                }
-                .flatMap(Int.init)
-        )
+func nthPrime(_ n: Int) -> Effect<Int?> {
+    return wolframAlpha(query: "prime \(n)").map { result in
+        result
+            .flatMap {
+                $0.queryresult
+                    .pods
+                    .first(where: { $0.primary == .some(true) })?
+                    .subpods
+                    .first?
+                    .plaintext
+            }
+            .flatMap(Int.init)
     }
 }

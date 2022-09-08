@@ -12,11 +12,14 @@ import FavoritesPrimes
 import PrimeModal
 
 func activityFeed(
-    _ reducer: @escaping (inout AppState, AppAction) -> Void
-) -> (inout AppState, AppAction) -> Void {
+    _ reducer: @escaping Reducer<AppState, AppAction>
+) -> Reducer<AppState, AppAction> {
     return { state, action in
         switch action {
-        case .counterView(.counter), .favoritesPrimes(.loadedFavoritePrimes), .favoritesPrimes(.saveButtonTapped), .favoritesPrimes(.loadButtonTapped):
+        case .counterView(.counter),
+                .favoritesPrimes(.loadedFavoritePrimes),
+                .favoritesPrimes(.saveButtonTapped),
+                .favoritesPrimes(.loadButtonTapped):
             break
         case .counterView(.primeModal(.removeFavoritePrimeTapped)):
             state.activityFeed.append(.init(timestamp: Date(), type: .removedFavoritePrime(state.count)))
@@ -29,16 +32,12 @@ func activityFeed(
                 )
             }
         }
-        reducer(&state, action)
+        return reducer(&state, action)
     }
 }
 
 
-let _appReducer: (inout AppState, AppAction) -> [Effect<AppAction>] = combine(
-//    pullback(counterReducer, value: \.count, action: \.counter),
-//    pullback(primeModalReducer, value: \.primeModal, action: \.primeModal),
-    pullback(counterViewReducer, value: \.counterView, action: \.counterView),
+let appReducer = combine(
+    pullback(counterViewReducer, value: \AppState.counterView, action: \AppAction.counterView),
     pullback(favoritePrimesReducer, value: \.favoritesPrimes, action: \.favoritesPrimes)
 )
-
-let appReducer = pullback(_appReducer, value: \.self, action: \.self)

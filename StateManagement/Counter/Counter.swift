@@ -9,10 +9,10 @@ import ComposableArchitecture
 import PrimeModal
 
 public struct CounterViewState {
-    var alertNthPrime: PrimeAlert?
-    var count: Int
-    var favoritePrimes: [Int]
-    var isNthPrimeButtonDisabled: Bool
+    public var alertNthPrime: PrimeAlert?
+    public var count: Int
+    public var favoritePrimes: [Int]
+    public var isNthPrimeButtonDisabled: Bool
     
     public init(
         alertNthPrime: PrimeAlert?,
@@ -85,14 +85,10 @@ public func counterReducer(state: inout CounterState, action: CounterAction) -> 
         return []
     case .nthPrimeButtonTapped:
         state.isNthPrimeButtonDisabled = true
-        let count = state.count
-        return [{ callback in
-            nthPrime(count) { prime in
-                DispatchQueue.main.async {
-                    callback(.nthPrimeResponse(prime))
-                }
-            }
-        }]
+        return [
+            nthPrime(state.count)
+                .map(CounterAction.nthPrimeResponse)
+                .receive(on: .main)]
         
     case let .nthPrimeResponse(prime):
         state.alertNthPrime = prime.map(PrimeAlert.init(prime:))
