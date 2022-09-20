@@ -27,4 +27,5 @@ func nthPrime(_ n: Int) -> Effect<Int?> {
             }
             .flatMap(Int.init)
     }
+    .eraseToEffect()
 }
