@@ -723,28 +723,24 @@
 					};
 					2E6E430928BD1361000ED8AE = {
 						CreatedOnToolsVersion = 13.4.1;
-						TestTargetID = 2E90E28828AECA670068A806;
 					};
 					2E6E432328BD138B000ED8AE = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
 					2E6E432C28BD138B000ED8AE = {
 						CreatedOnToolsVersion = 13.4.1;
-						TestTargetID = 2E90E28828AECA670068A806;
 					};
 					2E6E434528BD139C000ED8AE = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
 					2E6E434E28BD139C000ED8AE = {
 						CreatedOnToolsVersion = 13.4.1;
-						TestTargetID = 2E90E28828AECA670068A806;
 					};
 					2E6E436728BD13CD000ED8AE = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
 					2E6E437028BD13CD000ED8AE = {
 						CreatedOnToolsVersion = 13.4.1;
-						TestTargetID = 2E90E28828AECA670068A806;
 					};
 					2E90E28828AECA670068A806 = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -1126,7 +1122,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StateManagement.app/StateManagement";
 			};
 			name = Debug;
 		};
@@ -1144,7 +1139,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StateManagement.app/StateManagement";
 			};
 			name = Release;
 		};
@@ -1222,7 +1216,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StateManagement.app/StateManagement";
 			};
 			name = Debug;
 		};
@@ -1240,7 +1233,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StateManagement.app/StateManagement";
 			};
 			name = Release;
 		};
@@ -1318,7 +1310,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StateManagement.app/StateManagement";
 			};
 			name = Debug;
 		};
@@ -1336,7 +1327,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StateManagement.app/StateManagement";
 			};
 			name = Release;
 		};
@@ -1414,7 +1404,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StateManagement.app/StateManagement";
 			};
 			name = Debug;
 		};
@@ -1432,7 +1421,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StateManagement.app/StateManagement";
 			};
 			name = Release;
 		};

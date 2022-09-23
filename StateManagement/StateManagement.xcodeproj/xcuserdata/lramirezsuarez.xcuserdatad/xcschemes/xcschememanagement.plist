@@ -7,48 +7,122 @@
 		<key>ComposableArchitecture.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Counter.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>0</integer>
 		</dict>
 		<key>FavoritesPrimes.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>2</integer>
 		</dict>
 		<key>Overture (Playground) 1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>6</integer>
 		</dict>
 		<key>Overture (Playground) 2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>7</integer>
+		</dict>
+		<key>Overture (Playground) 3.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>Overture (Playground) 4.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>Overture (Playground) 5.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 		<key>Overture (Playground).xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>5</integer>
 		</dict>
 		<key>PrimeModal.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>StateManagement.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>3</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2E6E430028BD1361000ED8AE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E6E430928BD1361000ED8AE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E6E432328BD138B000ED8AE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E6E432C28BD138B000ED8AE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E6E434528BD139C000ED8AE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E6E434E28BD139C000ED8AE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E6E437028BD13CD000ED8AE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E90E28828AECA670068A806</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E90E29828AECA670068A806</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E90E2A228AECA670068A806</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
