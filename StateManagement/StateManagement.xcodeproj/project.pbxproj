@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E49591128CA3311009473A8 /* Effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E49591028CA3311009473A8 /* Effects.swift */; };
+		2E5D847228E4A0C200E12E31 /* ComposableArchitectureTestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5D847128E4A0C200E12E31 /* ComposableArchitectureTestSupport.swift */; };
 		2E6E430528BD1361000ED8AE /* Counter.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E430428BD1361000ED8AE /* Counter.docc */; };
 		2E6E430B28BD1361000ED8AE /* Counter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E430128BD1361000ED8AE /* Counter.framework */; };
 		2E6E431228BD1361000ED8AE /* CounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E431128BD1361000ED8AE /* CounterTests.swift */; };
@@ -174,6 +175,7 @@
 
 /* Begin PBXFileReference section */
 		2E49591028CA3311009473A8 /* Effects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effects.swift; sourceTree = "<group>"; };
+		2E5D847128E4A0C200E12E31 /* ComposableArchitectureTestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableArchitectureTestSupport.swift; sourceTree = "<group>"; };
 		2E6E430128BD1361000ED8AE /* Counter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Counter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E6E430328BD1361000ED8AE /* Counter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Counter.h; sourceTree = "<group>"; };
 		2E6E430428BD1361000ED8AE /* Counter.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Counter.docc; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				2E6E431128BD1361000ED8AE /* CounterTests.swift */,
+				2E5D847128E4A0C200E12E31 /* ComposableArchitectureTestSupport.swift */,
 			);
 			path = CounterTests;
 			sourceTree = "<group>";
@@ -886,6 +889,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E6E431228BD1361000ED8AE /* CounterTests.swift in Sources */,
+				2E5D847228E4A0C200E12E31 /* ComposableArchitectureTestSupport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
