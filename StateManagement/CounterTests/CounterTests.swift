@@ -6,9 +6,15 @@
 //
 
 import XCTest
+import ComposableArchitecture
 @testable import Counter
 
 class CounterTests: XCTestCase {
+    
+    override func setUp() {
+        super.setUp()
+        Current = .mock
+    }
 
     func testIncrementButtonTapped() {
         var state = CounterViewState(alertNthPrime: nil, count: 2, favoritePrimes: [3, 5], isNthPrimeButtonDisabled: false)
@@ -27,6 +33,7 @@ class CounterTests: XCTestCase {
     }
     
     func testNthPrimeButtonFlow() {
+        Current.nthPrime = { _ in .sync { 17 } }
         var state = CounterViewState(alertNthPrime: nil, count: 2, favoritePrimes: [3, 5], isNthPrimeButtonDisabled: false)
         
         var effects = counterViewReducer(&state, .counter(.nthPrimeButtonTapped))
@@ -34,7 +41,17 @@ class CounterTests: XCTestCase {
         XCTAssertEqual(state, CounterViewState(alertNthPrime: nil, count: 2, favoritePrimes: [3, 5], isNthPrimeButtonDisabled: true))
         XCTAssertEqual(effects.count, 1)
         
-        effects = counterViewReducer(&state, .counter(.nthPrimeResponse(3)))
+        var nextAction: CounterViewAction!
+        let receivedCompletion = self.expectation(description: "receiveCompletion")
+        _ = effects[0].sink(
+            receiveCompletion: { _ in receivedCompletion.fulfill() },
+            receiveValue: { action in
+                nextAction = action
+                XCTAssertEqual(action, .counter(.nthPrimeResponse(17)))
+            })
+        self.wait(for: [receivedCompletion], timeout: 0.1)
+        
+        effects = counterViewReducer(&state, nextAction)
         
         XCTAssertEqual(state, CounterViewState(alertNthPrime: PrimeAlert(prime: 3), count: 2, favoritePrimes: [3, 5], isNthPrimeButtonDisabled: false))
         XCTAssert(effects.isEmpty)
@@ -46,6 +63,7 @@ class CounterTests: XCTestCase {
     }
     
     func testNthPrimeButtonUnhappyFlow() {
+        Current.nthPrime = { _ in .sync { nil } }
         var state = CounterViewState(alertNthPrime: nil, count: 2, favoritePrimes: [3, 5], isNthPrimeButtonDisabled: false)
         
         var effects = counterViewReducer(&state, .counter(.nthPrimeButtonTapped))
@@ -56,6 +74,52 @@ class CounterTests: XCTestCase {
         effects = counterViewReducer(&state, .counter(.nthPrimeResponse(nil)))
         
         XCTAssertEqual(state, CounterViewState(alertNthPrime: nil, count: 2, favoritePrimes: [3, 5], isNthPrimeButtonDisabled: false))
+        XCTAssert(effects.isEmpty)
+    }
+    
+    func testNthPrimeButtonUnhappyFlow2() {
+        Current.nthPrime = { _ in .sync { nil } }
+        var state = CounterViewState(
+            alertNthPrime: nil,
+            count: 7,
+            favoritePrimes: [2, 3],
+            isNthPrimeButtonDisabled: false
+        )
+        
+        var effects = counterViewReducer(&state, .counter(.nthPrimeButtonTapped))
+        XCTAssertEqual(
+            state,
+            CounterViewState(
+                alertNthPrime: nil,
+                count: 7,
+                favoritePrimes: [2, 3],
+                isNthPrimeButtonDisabled: true
+            )
+        )
+        XCTAssertEqual(effects.count, 1)
+        
+        let receivedCompletion = self.expectation(description: "receivedCompletion")
+        var nextAction: CounterViewAction!
+        _ = effects[0].sink(
+            receiveCompletion: { _ in
+                receivedCompletion.fulfill()
+            },
+            receiveValue: { action in
+                nextAction = action
+                XCTAssertEqual(action, .counter(.nthPrimeResponse(nil)))
+            })
+        self.wait(for: [receivedCompletion], timeout: 0.1)
+        
+        effects = counterViewReducer(&state, nextAction)
+        XCTAssertEqual(
+            state,
+            CounterViewState(
+                alertNthPrime: nil,
+                count: 7,
+                favoritePrimes: [2, 3],
+                isNthPrimeButtonDisabled: false
+            )
+        )
         XCTAssert(effects.isEmpty)
     }
 
