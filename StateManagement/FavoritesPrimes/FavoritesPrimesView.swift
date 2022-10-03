@@ -59,7 +59,8 @@ struct FavoritesPrimesView_Previews: PreviewProvider {
         FavoritesPrimesView(
             store: Store<[Int], FavoritePrimesAction>(
                 initialValue: [2,3,4,5,6],
-                reducer: favoritePrimesReducer
+                reducer: favoritePrimesReducer,
+                environment: FavoritePrimeEnvironment.mock
             )
         )
     }

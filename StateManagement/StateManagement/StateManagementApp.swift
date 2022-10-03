@@ -8,6 +8,7 @@
 import SwiftUI
 import Overture
 import ComposableArchitecture
+import Counter
 
 @main
 struct StateManagementApp: App {
@@ -22,7 +23,8 @@ struct StateManagementApp: App {
                             logging,
                             activityFeed
                         )
-                    )
+                    ),
+                    environment: AppEnvironment(fileClient: .live, nthPrime: Counter.nthPrime)
                 )
             )
         }

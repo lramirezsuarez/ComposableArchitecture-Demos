@@ -49,7 +49,7 @@ struct IsPrimeModalShown_Previews: PreviewProvider {
         IsPrimeModalShown(
             store: Store<PrimeModalState, PrimeModalAction>(
                 initialValue: PrimeModalState(count: 2, favoritesPrimes: [2,3,4,5,6]),
-                reducer: primeModalReducer
+                reducer: primeModalReducer, environment: ()
             )
         )
     }

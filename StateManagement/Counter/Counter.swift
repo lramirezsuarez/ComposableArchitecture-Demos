@@ -75,7 +75,7 @@ public enum CounterAction: Equatable {
 
 public typealias CounterState = (alertNthPrime: PrimeAlert?, count: Int, isNthPrimeButtonDisabled: Bool)
 
-public func counterReducer(state: inout CounterState, action: CounterAction) -> [Effect<CounterAction>] {
+public func counterReducer(state: inout CounterState, action: CounterAction, environment: CounterEnvironment) -> [Effect<CounterAction>] {
     switch action {
     case .decrementTap:
         state.count -= 1
@@ -87,7 +87,7 @@ public func counterReducer(state: inout CounterState, action: CounterAction) -> 
         state.isNthPrimeButtonDisabled = true
         return [
 //            nthPrime(state.count)
-            Current.nthPrime(state.count)
+            environment(state.count)
                 .map(CounterAction.nthPrimeResponse)
                 .receive(on: DispatchQueue.main)
                 .eraseToEffect()]
@@ -102,23 +102,20 @@ public func counterReducer(state: inout CounterState, action: CounterAction) -> 
     }
 }
 
-struct CounterEnvironment {
-    var nthPrime: (Int) -> Effect<Int?>
-}
+//public struct CounterEnvironment {
+//    var nthPrime: (Int) -> Effect<Int?>
+//}
+//
+//extension CounterEnvironment {
+//    public static let live = CounterEnvironment(nthPrime: Counter.nthPrime)
+//}
+public typealias CounterEnvironment = (Int) -> Effect<Int?>
+//
+//#if DEBUG
+//let mock = { (Int) in Effect.sync { 17 }}
+//#endif
 
-extension CounterEnvironment {
-    static let live = CounterEnvironment(nthPrime: Counter.nthPrime)
-}
-
-var Current = CounterEnvironment.live
-
-#if DEBUG
-extension CounterEnvironment {
-    static let mock = CounterEnvironment(nthPrime: { _ in .sync { 17 }})
-}
-#endif
-
-public let counterViewReducer = combine(
-    pullback(counterReducer, value: \CounterViewState.counter, action: \CounterViewAction.counter),
-    pullback(primeModalReducer, value: \.primeModal, action: \.primeModal)
+public let counterViewReducer: Reducer<CounterViewState, CounterViewAction, CounterEnvironment> = combine(
+    pullback(counterReducer, value: \CounterViewState.counter, action: \CounterViewAction.counter, environment: { $0 }),
+    pullback(primeModalReducer, value: \.primeModal, action: \.primeModal, environment: { _ in () })
 )

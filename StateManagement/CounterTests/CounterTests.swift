@@ -9,15 +9,12 @@ import XCTest
 @testable import Counter
 
 class CounterTests: XCTestCase {
-    override func setUp() {
-        super.setUp()
-        Current = .mock
-    }
     
     func testIncrDecrButtonTapped() {
         assert(
             initialValue: CounterViewState(count: 2),
             reducer: counterViewReducer,
+            environment: { _ in .sync { 17 }},
             steps:
                 Step(.send, .counter(.incrementTap)) { $0.count = 3 },
             Step(.send, .counter(.incrementTap)) { $0.count = 4 },
@@ -26,7 +23,6 @@ class CounterTests: XCTestCase {
     }
     
     func testNthPrimeButtonHappyFlow() {
-        Current.nthPrime = { _ in .sync { 17 } }
         
         assert(
             initialValue: CounterViewState(
@@ -34,6 +30,7 @@ class CounterTests: XCTestCase {
                 isNthPrimeButtonDisabled: false
             ),
             reducer: counterViewReducer,
+            environment: { _ in .sync { 17 }},
             steps:
                 Step(.send, .counter(.nthPrimeButtonTapped)) {
                     $0.isNthPrimeButtonDisabled = true
@@ -49,14 +46,13 @@ class CounterTests: XCTestCase {
     }
     
     func testNthPrimeButtonUnhappyFlow() {
-        Current.nthPrime = { _ in .sync { nil } }
-        
         assert(
             initialValue: CounterViewState(
                 alertNthPrime: nil,
                 isNthPrimeButtonDisabled: false
             ),
             reducer: counterViewReducer,
+            environment: { _ in .sync { nil }},
             steps:
                 Step(.send, .counter(.nthPrimeButtonTapped)) {
                     $0.isNthPrimeButtonDisabled = true
@@ -74,6 +70,7 @@ class CounterTests: XCTestCase {
                 favoritePrimes: [3, 5]
             ),
             reducer: counterViewReducer,
+            environment: { _ in .sync { nil }},
             steps:
                 Step(.send, .counter(.incrementTap), { $0.count = 2 }),
                 Step(.send, .primeModal(.saveFavoritePrimeTapped)) {

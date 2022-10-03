@@ -14,7 +14,7 @@ func ordinal(_ n: Int) -> String {
     return formatter.string(for: n) ?? ""
 }
 
-func nthPrime(_ n: Int) -> Effect<Int?> {
+public func nthPrime(_ n: Int) -> Effect<Int?> {
     return wolframAlpha(query: "prime \(n)").map { result in
         result
             .flatMap {

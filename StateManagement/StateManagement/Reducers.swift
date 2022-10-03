@@ -12,9 +12,9 @@ import FavoritesPrimes
 import PrimeModal
 
 func activityFeed(
-    _ reducer: @escaping Reducer<AppState, AppAction>
-) -> Reducer<AppState, AppAction> {
-    return { state, action in
+    _ reducer: @escaping Reducer<AppState, AppAction, AppEnvironment>
+) -> Reducer<AppState, AppAction, AppEnvironment> {
+    return { state, action, environment in
         switch action {
         case .counterView(.counter),
                 .favoritesPrimes(.loadedFavoritePrimes),
@@ -32,12 +32,18 @@ func activityFeed(
                 )
             }
         }
-        return reducer(&state, action)
+        return reducer(&state, action, environment)
     }
 }
 
+//struct AppEnvironment {
+//    var counter: CounterEnvironment
+//    var favoritePrimes: FavoritePrimeEnvironment
+//}
 
-let appReducer = combine(
-    pullback(counterViewReducer, value: \AppState.counterView, action: \AppAction.counterView),
-    pullback(favoritePrimesReducer, value: \.favoritesPrimes, action: \.favoritesPrimes)
+typealias AppEnvironment = (fileClient: FileClient, nthPrime: (Int) -> Effect<Int?>)
+
+let appReducer: Reducer<AppState, AppAction, AppEnvironment> = combine(
+    pullback(counterViewReducer, value: \AppState.counterView, action: \AppAction.counterView, environment: { $0.nthPrime }),
+    pullback(favoritePrimesReducer, value: \.favoritesPrimes, action: \.favoritesPrimes, environment: { $0.fileClient })
 )

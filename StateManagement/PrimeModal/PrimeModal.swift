@@ -14,7 +14,7 @@ public enum PrimeModalAction: Equatable {
     case removeFavoritePrimeTapped
 }
 
-public func primeModalReducer(state: inout PrimeModalState, action: PrimeModalAction) -> [Effect<PrimeModalAction>] {
+public func primeModalReducer(state: inout PrimeModalState, action: PrimeModalAction, environment: Void) -> [Effect<PrimeModalAction>] {
     switch action {
     case .removeFavoritePrimeTapped:
         state.favoritesPrimes.removeAll(where: { $0 == state.count })
