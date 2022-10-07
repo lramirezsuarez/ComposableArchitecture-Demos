@@ -10,8 +10,18 @@ import ComposableArchitecture
 import PrimeModal
 
 public struct PrimeAlert: Identifiable, Equatable {
-    let prime: Int
+    public let n: Int
+    public let prime: Int
     public var id: Int { self.prime }
+    
+    public init(n: Int, prime: Int) {
+        self.n = n
+        self.prime = prime
+    }
+    
+    public var title: String {
+        return "The \(ordinal(self.n)) prime is \(self.prime)"
+    }
 }
 
 public struct CounterView: View {
@@ -58,7 +68,7 @@ public struct CounterView: View {
             item: .constant(self.store.value.alertNthPrime)
         ) { alert in
             Alert(
-                title: Text("The \(ordinal(self.store.value.count)) prime is \(alert.prime)"),
+                title: Text(alert.title),
                 dismissButton: .default(Text("Ok")) {
                     self.store.send(.counter(.alertDismissButtonTapped))
                 }

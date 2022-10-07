@@ -36,7 +36,7 @@ class CounterTests: XCTestCase {
                     $0.isNthPrimeButtonDisabled = true
                 },
             Step(.receive, .counter(.nthPrimeResponse(17))) {
-                $0.alertNthPrime = PrimeAlert(prime: 17)
+                $0.alertNthPrime = PrimeAlert(n: 1, prime: 17)
                 $0.isNthPrimeButtonDisabled = false
             },
             Step(.send, .counter(.alertDismissButtonTapped)) {

@@ -93,7 +93,7 @@ public func counterReducer(state: inout CounterState, action: CounterAction, env
                 .eraseToEffect()]
         
     case let .nthPrimeResponse(prime):
-        state.alertNthPrime = prime.map(PrimeAlert.init(prime:))
+        state.alertNthPrime = prime.map { PrimeAlert.init(n: state.count, prime: $0) }
         state.isNthPrimeButtonDisabled = false
         return []
     case .alertDismissButtonTapped:

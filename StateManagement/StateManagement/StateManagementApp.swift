@@ -24,7 +24,7 @@ struct StateManagementApp: App {
                             activityFeed
                         )
                     ),
-                    environment: AppEnvironment(fileClient: .live, nthPrime: Counter.nthPrime)
+                    environment: AppEnvironment(fileClient: .live, nthPrime: Counter.nthPrime, offlineNthPrime: Counter.offlineNthPrime)
                 )
             )
         }
