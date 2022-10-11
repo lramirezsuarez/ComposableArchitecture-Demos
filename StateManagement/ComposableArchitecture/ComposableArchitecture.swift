@@ -39,11 +39,41 @@ extension Publisher where Failure == Never {
 
 public typealias Reducer<Value, Action, Environment> = (inout Value, Action, Environment) -> [Effect<Action>]
 
-public final class Store<Value, Action>: ObservableObject {
+public final class ViewStore<Value>: ObservableObject {
+    @Published public fileprivate(set) var value: Value
+    fileprivate var cancellable: Cancellable?
+    
+    public init(initialValue value: Value) {
+        self.value = value
+    }
+}
+
+extension Store where Value: Equatable {
+    public var view: ViewStore<Value> {
+        self.view(removeDuplicated: ==)
+    }
+}
+
+extension Store {
+    public func view(removeDuplicated predicate: @escaping (Value, Value) -> Bool) -> ViewStore<Value> {
+        let viewStore = ViewStore(initialValue: self.value)
+        
+        viewStore.cancellable = self.$value
+            .removeDuplicates(by: predicate)
+            .sink(receiveValue: { [weak viewStore] value in
+                viewStore?.value = value
+                self
+            })
+        
+        return viewStore
+    }
+}
+
+public final class Store<Value, Action>/*: ObservableObject*/ {
     private let reducer: Reducer<Value, Action, Any>
     private let environment: Any
-    @Published public private(set) var value: Value
-    private var effectCancellable: Set<AnyCancellable> = []
+    @Published private var value: Value
+    private var effectCancellables: [UUID: AnyCancellable] = [:]
     private var viewCancellable: Cancellable?
     
     public init<Environment>(
@@ -59,24 +89,24 @@ public final class Store<Value, Action>: ObservableObject {
     
     public func send(_ action: Action) {
         let effects = self.reducer(&self.value, action, self.environment)
+        var didComplete = false
         effects.forEach { effect in
-            var effectCancellable: AnyCancellable?
-            var didComplete = false
-            effectCancellable = effect.sink(receiveCompletion: { [weak self] _ in
-                didComplete = true
-                guard let effectCancellable = effectCancellable else {
-                    return
-                }
-                self?.effectCancellable.remove(effectCancellable)
-            }, receiveValue: self.send)
-            
-            if !didComplete, let effectCancellable = effectCancellable {
-                self.effectCancellable.insert(effectCancellable)
+            let uuid = UUID()
+            let effectCancellable = effect.sink(
+                receiveCompletion: { [weak self] _ in
+                    didComplete = true
+                    self?.effectCancellables[uuid] = nil
+                },
+                receiveValue: { [weak self] in self?.send($0) }
+            )
+            if !didComplete {
+                self.effectCancellables[uuid] = effectCancellable
             }
         }
+        
     }
     
-    public func view<LocalValue, LocalAction>(
+    public func scope<LocalValue, LocalAction>(
         value toLocalValue: @escaping (Value) -> LocalValue,
         action toGlobalAction: @escaping (LocalAction) -> Action
     ) -> Store<LocalValue, LocalAction> {

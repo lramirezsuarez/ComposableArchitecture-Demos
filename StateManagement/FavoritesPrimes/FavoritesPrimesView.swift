@@ -9,15 +9,17 @@ import SwiftUI
 import ComposableArchitecture
 
 public struct FavoritesPrimesView: View {
-    @ObservedObject var store: Store<FavoritePrimeState, FavoritePrimesAction>
+    let store: Store<FavoritePrimeState, FavoritePrimesAction>
+    @ObservedObject var viewStore: ViewStore<FavoritePrimeState>
     
     public init(store: Store<FavoritePrimeState, FavoritePrimesAction>) {
         self.store = store
+        self.viewStore = self.store.view(removeDuplicated: ==)
     }
     
     public var body: some View {
         List {
-            ForEach(store.value.favoritePrimes, id: \.self) { prime in
+            ForEach(self.viewStore.value.favoritePrimes, id: \.self) { prime in
                 Button("\(prime)") {
                     self.store.send(.primeButtonTapped(prime))
                 }
@@ -53,7 +55,7 @@ public struct FavoritesPrimesView: View {
                 }
             }
         }
-        .alert(item: .constant(self.store.value.alertNthPrime)) { alert in
+        .alert(item: .constant(self.viewStore.value.alertNthPrime)) { alert in
             Alert(title: Text(alert.title),
                   dismissButton: .default(Text("Ok"))  {
                 self.store.send(.alertDimissButtonTapped)

@@ -8,27 +8,30 @@
 import ComposableArchitecture
 import PrimeModal
 
-public struct CounterViewState: Equatable {
+public struct CounterFeatureState: Equatable {
     public var alertNthPrime: PrimeAlert?
     public var count: Int
     public var favoritePrimes: [Int]
-    public var isNthPrimeButtonDisabled: Bool
+    public var isNthPrimeRequestInFlight: Bool
+    public var isPrimeModalShown: Bool
     
     public init(
         alertNthPrime: PrimeAlert? = nil,
         count: Int = 0,
         favoritePrimes: [Int] = [],
-        isNthPrimeButtonDisabled: Bool = false
+        isNthPrimeRequestInFlight: Bool = false,
+        isPrimeModalShown: Bool = false
     ) {
         self.alertNthPrime = alertNthPrime
         self.count = count
         self.favoritePrimes = favoritePrimes
-        self.isNthPrimeButtonDisabled = isNthPrimeButtonDisabled
+        self.isNthPrimeRequestInFlight = isNthPrimeRequestInFlight
+        self.isPrimeModalShown = isPrimeModalShown
     }
     
     var counter: CounterState {
-        get { (self.alertNthPrime, self.count, self.isNthPrimeButtonDisabled) }
-        set { (self.alertNthPrime, self.count, self.isNthPrimeButtonDisabled) = newValue }
+        get { (self.alertNthPrime, self.count, self.isNthPrimeRequestInFlight, self.isPrimeModalShown) }
+        set { (self.alertNthPrime, self.count, self.isNthPrimeRequestInFlight, self.isPrimeModalShown) = newValue }
     }
     
     var primeModal: PrimeModalState {
@@ -38,7 +41,7 @@ public struct CounterViewState: Equatable {
 }
 
 
-public enum CounterViewAction: Equatable {
+public enum CounterFeatureAction: Equatable {
     case counter(CounterAction)
     case primeModal(PrimeModalAction)
     
@@ -71,9 +74,11 @@ public enum CounterAction: Equatable {
     case nthPrimeButtonTapped
     case nthPrimeResponse(Int?)
     case alertDismissButtonTapped
+    case isPrimeButtonTapped
+    case primeModalDismissed
 }
 
-public typealias CounterState = (alertNthPrime: PrimeAlert?, count: Int, isNthPrimeButtonDisabled: Bool)
+public typealias CounterState = (alertNthPrime: PrimeAlert?, count: Int, isNthPrimeRequestInFlight: Bool, isPrimeModalShown: Bool)
 
 public func counterReducer(state: inout CounterState, action: CounterAction, environment: CounterEnvironment) -> [Effect<CounterAction>] {
     switch action {
@@ -84,7 +89,7 @@ public func counterReducer(state: inout CounterState, action: CounterAction, env
         state.count += 1
         return []
     case .nthPrimeButtonTapped:
-        state.isNthPrimeButtonDisabled = true
+        state.isNthPrimeRequestInFlight = true
         return [
 //            nthPrime(state.count)
             environment(state.count)
@@ -94,10 +99,17 @@ public func counterReducer(state: inout CounterState, action: CounterAction, env
         
     case let .nthPrimeResponse(prime):
         state.alertNthPrime = prime.map { PrimeAlert.init(n: state.count, prime: $0) }
-        state.isNthPrimeButtonDisabled = false
+        state.isNthPrimeRequestInFlight = false
         return []
     case .alertDismissButtonTapped:
         state.alertNthPrime = nil
+        return []
+    case .isPrimeButtonTapped:
+        state.isPrimeModalShown = true
+        return []
+        
+    case .primeModalDismissed:
+        state.isPrimeModalShown = false
         return []
     }
 }
@@ -115,7 +127,7 @@ public typealias CounterEnvironment = (Int) -> Effect<Int?>
 //let mock = { (Int) in Effect.sync { 17 }}
 //#endif
 
-public let counterViewReducer: Reducer<CounterViewState, CounterViewAction, CounterEnvironment> = combine(
-    pullback(counterReducer, value: \CounterViewState.counter, action: \CounterViewAction.counter, environment: { $0 }),
+public let counterViewReducer: Reducer<CounterFeatureState, CounterFeatureAction, CounterEnvironment> = combine(
+    pullback(counterReducer, value: \CounterFeatureState.counter, action: \CounterFeatureAction.counter, environment: { $0 }),
     pullback(primeModalReducer, value: \.primeModal, action: \.primeModal, environment: { _ in () })
 )
