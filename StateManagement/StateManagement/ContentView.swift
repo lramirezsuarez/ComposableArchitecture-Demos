@@ -12,18 +12,19 @@ import ComposableArchitecture
 import FavoritesPrimes
 
 struct ContentView: View {
-    @ObservedObject var store: Store<AppState, AppAction>
+    let store: Store<AppState, AppAction>
+//    @ObservedObject var viewStore: ViewStore<AppState, AppAction>
     
     var body: some View {
         NavigationView {
             List {
-                NavigationLink("Counter demo", destination:  CounterView(store: self.store.view(
+                NavigationLink("Counter demo", destination:  CounterView(store: self.store.scope(
                     value: { $0.counterView },
                     action: { .counterView($0) })))
-                NavigationLink("Offline Counter demo", destination:  CounterView(store: self.store.view(
+                NavigationLink("Offline Counter demo", destination:  CounterView(store: self.store.scope(
                     value: { $0.counterView },
                     action: { .offlineCounterView($0) })))
-                NavigationLink("Favorite primes", destination: FavoritesPrimesView(store: self.store.view(
+                NavigationLink("Favorite primes", destination: FavoritesPrimesView(store: self.store.scope(
                     value:  { FavoritePrimeState(alertNthPrime: nil, favoritePrimes: $0.favoritesPrimes) },
                     action: { .favoritesPrimes($0) })))
             }

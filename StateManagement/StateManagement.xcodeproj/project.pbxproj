@@ -42,6 +42,7 @@
 		2E6E438F28BFAD01000ED8AE /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E2B628AED86B0068A806 /* CounterView.swift */; };
 		2E6E439028BFAD2D000ED8AE /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E2BA28AED8EF0068A806 /* Helpers.swift */; };
 		2E6E439128BFAD8E000ED8AE /* WolframAlpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E2BC28AED9160068A806 /* WolframAlpha.swift */; };
+		2E6F7D2928F717470080E598 /* ComposableArchitectureSnapshotTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F7D2828F717470080E598 /* ComposableArchitectureSnapshotTesting.swift */; };
 		2E865C3D28F081CB00D26A3A /* ComposableArchitectureTestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E865C3C28F081CB00D26A3A /* ComposableArchitectureTestSupport.swift */; };
 		2E90E28D28AECA670068A806 /* StateManagementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E28C28AECA670068A806 /* StateManagementApp.swift */; };
 		2E90E28F28AECA670068A806 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E28E28AECA670068A806 /* ContentView.swift */; };
@@ -201,6 +202,7 @@
 		2E6E438728BD157A000ED8AE /* FavoritesPrimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPrimes.swift; sourceTree = "<group>"; };
 		2E6E438928BD1886000ED8AE /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		2E6E438B28BD18D0000ED8AE /* PrimeModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeModal.swift; sourceTree = "<group>"; };
+		2E6F7D2828F717470080E598 /* ComposableArchitectureSnapshotTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableArchitectureSnapshotTesting.swift; sourceTree = "<group>"; };
 		2E865C3C28F081CB00D26A3A /* ComposableArchitectureTestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableArchitectureTestSupport.swift; sourceTree = "<group>"; };
 		2E90E28928AECA670068A806 /* StateManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StateManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E90E28C28AECA670068A806 /* StateManagementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateManagementApp.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 			children = (
 				2E6E431128BD1361000ED8AE /* CounterTests.swift */,
 				2E5D847128E4A0C200E12E31 /* ComposableArchitectureTestSupport.swift */,
+				2E6F7D2828F717470080E598 /* ComposableArchitectureSnapshotTesting.swift */,
 			);
 			path = CounterTests;
 			sourceTree = "<group>";
@@ -892,6 +895,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E6E431228BD1361000ED8AE /* CounterTests.swift in Sources */,
+				2E6F7D2928F717470080E598 /* ComposableArchitectureSnapshotTesting.swift in Sources */,
 				2E5D847228E4A0C200E12E31 /* ComposableArchitectureTestSupport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

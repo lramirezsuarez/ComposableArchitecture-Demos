@@ -11,11 +11,11 @@ import FavoritesPrimes
 import PrimeModal
 
 enum AppAction: Equatable {
-    case counterView(CounterViewAction)
-    case offlineCounterView(CounterViewAction)
+    case counterView(CounterFeatureAction)
+    case offlineCounterView(CounterFeatureAction)
     case favoritesPrimes(FavoritePrimesAction)
     
-    var counterView: CounterViewAction? {
+    var counterView: CounterFeatureAction? {
         get {
             guard case let .counterView(value) = self else { return nil }
             return value
@@ -26,7 +26,7 @@ enum AppAction: Equatable {
         }
     }
     
-    var offlineCounterView: CounterViewAction? {
+    var offlineCounterView: CounterFeatureAction? {
         get {
             guard case let .offlineCounterView(value) = self else { return nil }
             return value

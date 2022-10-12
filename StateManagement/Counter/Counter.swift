@@ -71,7 +71,8 @@ public enum CounterFeatureAction: Equatable {
 public enum CounterAction: Equatable {
     case decrementTap
     case incrementTap
-    case nthPrimeButtonTapped
+//    case nthPrimeButtonTapped
+    case requestNthPrime
     case nthPrimeResponse(Int?)
     case alertDismissButtonTapped
     case isPrimeButtonTapped
@@ -88,7 +89,7 @@ public func counterReducer(state: inout CounterState, action: CounterAction, env
     case .incrementTap:
         state.count += 1
         return []
-    case .nthPrimeButtonTapped:
+    case .requestNthPrime:
         state.isNthPrimeRequestInFlight = true
         return [
 //            nthPrime(state.count)

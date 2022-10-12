@@ -15,7 +15,7 @@ public struct IsPrimeModalShown: View {
     }
     
     let store: Store<PrimeModalState, PrimeModalAction>
-    @ObservedObject var viewStore: ViewStore<State>
+    @ObservedObject var viewStore: ViewStore<State, PrimeModalAction>
     
     public init(store: Store<PrimeModalState, PrimeModalAction>) {
         self.store = store
@@ -47,9 +47,9 @@ public struct IsPrimeModalShown: View {
     
     func addRemoveFavoritePrime() {
         if primeInFavorites() {
-            self.store.send(.removeFavoritePrimeTapped)
+            self.viewStore.send(.removeFavoritePrimeTapped)
         } else {
-            self.store.send(.saveFavoritePrimeTapped)
+            self.viewStore.send(.saveFavoritePrimeTapped)
         }
     }
 }

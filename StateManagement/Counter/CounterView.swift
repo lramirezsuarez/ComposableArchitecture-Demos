@@ -31,31 +31,39 @@ public struct CounterView: View {
         let isNthPrimeButtonDisabled: Bool
         let isPrimeModalShown: Bool
     }
+    enum Action {
+        case decrementTap
+        case incrementTap
+        case nthPrimeButtonTapped
+        case alertDismissButtonTapped
+        case isPrimeButtonTapped
+        case primeModalDismissed
+    }
     
     let store: Store<CounterFeatureState, CounterFeatureAction>
-    @ObservedObject var viewStore: ViewStore<State>
+    @ObservedObject var viewStore: ViewStore<State, Action>
     
     public init(store: Store<CounterFeatureState, CounterFeatureAction>) {
         self.store = store
         self.viewStore = self.store
-            .scope(value: State.init(counterFeatureState:),
-                   action: { $0 })
+            .scope(value: State.init,
+                   action: CounterFeatureAction.init)
             .view
     }
     
     public var body: some View {
         VStack {
             HStack {
-                Button(action: { self.store.send(.counter(.decrementTap)) }) {
+                Button(action: { self.viewStore.send(.decrementTap) }) {
                     Image(systemName: "minus")
                 }
                 Text("\(self.viewStore.value.count)")
-                Button(action: { self.store.send(.counter(.incrementTap)) }) {
+                Button(action: { self.viewStore.send(.incrementTap) }) {
                     Image(systemName: "plus")
                 }
             }.padding()
             HStack {
-                Button(action: { self.store.send(.counter(.isPrimeButtonTapped)) }) {
+                Button(action: { self.viewStore.send(.isPrimeButtonTapped) }) {
                     Text("Is this prime?")
                 }
             }.padding()
@@ -69,7 +77,7 @@ public struct CounterView: View {
         .font(.title)
         .navigationBarTitle("Counter Demo")
         .sheet(isPresented: .constant(self.viewStore.value.isPrimeModalShown),
-               onDismiss: { self.store.send(.counter(.primeModalDismissed)) }) {
+               onDismiss: { self.viewStore.send(.primeModalDismissed) }) {
             IsPrimeModalShown(store: self.store.scope(
                 value: { PrimeModalState(count: $0.count, favoritesPrimes: $0.favoritePrimes) },
                 action: { .primeModal($0) })
@@ -81,7 +89,7 @@ public struct CounterView: View {
             Alert(
                 title: Text(alert.title),
                 dismissButton: .default(Text("Ok")) {
-                    self.store.send(.counter(.alertDismissButtonTapped))
+                    self.viewStore.send(.alertDismissButtonTapped)
                 }
             )
         }
@@ -99,7 +107,7 @@ public struct CounterView: View {
 //            self.alertNthPrime = true
 //            self.nthPrimeReceived = nthPrime
 //        }
-        self.store.send(.counter(.nthPrimeButtonTapped))
+        self.viewStore.send(.nthPrimeButtonTapped)
     }
 }
 
@@ -109,6 +117,25 @@ extension CounterView.State {
         self.count = counterFeatureState.count
         self.isNthPrimeButtonDisabled = counterFeatureState.isNthPrimeRequestInFlight
         self.isPrimeModalShown = counterFeatureState.isPrimeModalShown
+    }
+}
+
+extension CounterFeatureAction {
+    init(counterViewAction action: CounterView.Action) {
+        switch action {
+        case .decrementTap:
+            self = .counter(.decrementTap)
+        case .incrementTap:
+            self = .counter(.incrementTap)
+        case .nthPrimeButtonTapped:
+            self = .counter(.requestNthPrime)
+        case .alertDismissButtonTapped:
+            self = .counter(.alertDismissButtonTapped)
+        case .isPrimeButtonTapped:
+            self = .counter(.isPrimeButtonTapped)
+        case .primeModalDismissed:
+            self = .counter(.primeModalDismissed)
+        }
     }
 }
 

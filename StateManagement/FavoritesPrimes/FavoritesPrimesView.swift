@@ -10,7 +10,7 @@ import ComposableArchitecture
 
 public struct FavoritesPrimesView: View {
     let store: Store<FavoritePrimeState, FavoritePrimesAction>
-    @ObservedObject var viewStore: ViewStore<FavoritePrimeState>
+    @ObservedObject var viewStore: ViewStore<FavoritePrimeState, FavoritePrimesAction>
     
     public init(store: Store<FavoritePrimeState, FavoritePrimesAction>) {
         self.store = store
@@ -21,18 +21,18 @@ public struct FavoritesPrimesView: View {
         List {
             ForEach(self.viewStore.value.favoritePrimes, id: \.self) { prime in
                 Button("\(prime)") {
-                    self.store.send(.primeButtonTapped(prime))
+                    self.viewStore.send(.primeButtonTapped(prime))
                 }
             }
             .onDelete { indexSet in
-                self.store.send(.deleteFavoritePrimes(indexSet))
+                self.viewStore.send(.deleteFavoritePrimes(indexSet))
             }
         }
         .navigationTitle("Favorite Primes")
         .toolbar {
             HStack {
                 Button("Save") {
-                    self.store.send(.saveButtonTapped)
+                    self.viewStore.send(.saveButtonTapped)
 //                    let data = try! JSONEncoder().encode(self.store.value)
 //                    let documentsPath = NSSearchPathForDirectoriesInDomains(
 //                        .documentDirectory, .userDomainMask, true
@@ -43,7 +43,7 @@ public struct FavoritesPrimesView: View {
 //                    try! data.write(to: favoritePrimesUrl)
                 }
                 Button("Load") {
-                    self.store.send(.loadButtonTapped)
+                    self.viewStore.send(.loadButtonTapped)
 //                    let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
 //                    let documentsUrl = URL(fileURLWithPath: documentPath)
 //                    let favoritesPrimesUrl = documentsUrl.appendingPathComponent("favorite-primes.json")
@@ -58,7 +58,7 @@ public struct FavoritesPrimesView: View {
         .alert(item: .constant(self.viewStore.value.alertNthPrime)) { alert in
             Alert(title: Text(alert.title),
                   dismissButton: .default(Text("Ok"))  {
-                self.store.send(.alertDimissButtonTapped)
+                self.viewStore.send(.alertDimissButtonTapped)
             }
             )
             
