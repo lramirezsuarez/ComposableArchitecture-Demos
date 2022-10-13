@@ -13,36 +13,38 @@
 		2E6E430B28BD1361000ED8AE /* Counter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E430128BD1361000ED8AE /* Counter.framework */; };
 		2E6E431228BD1361000ED8AE /* CounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E431128BD1361000ED8AE /* CounterTests.swift */; };
 		2E6E431328BD1361000ED8AE /* Counter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E6E430328BD1361000ED8AE /* Counter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2E6E431628BD1361000ED8AE /* Counter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E430128BD1361000ED8AE /* Counter.framework */; };
-		2E6E431728BD1361000ED8AE /* Counter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E430128BD1361000ED8AE /* Counter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E6E431628BD1361000ED8AE /* Counter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E430128BD1361000ED8AE /* Counter.framework */; platformFilter = ios; };
+		2E6E431728BD1361000ED8AE /* Counter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E430128BD1361000ED8AE /* Counter.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E6E432828BD138B000ED8AE /* PrimeModal.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E432728BD138B000ED8AE /* PrimeModal.docc */; };
 		2E6E432E28BD138B000ED8AE /* PrimeModal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E432428BD138B000ED8AE /* PrimeModal.framework */; };
 		2E6E433528BD138B000ED8AE /* PrimeModalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E433428BD138B000ED8AE /* PrimeModalTests.swift */; };
 		2E6E433628BD138B000ED8AE /* PrimeModal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E6E432628BD138B000ED8AE /* PrimeModal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2E6E433928BD138B000ED8AE /* PrimeModal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E432428BD138B000ED8AE /* PrimeModal.framework */; };
-		2E6E433A28BD138B000ED8AE /* PrimeModal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E432428BD138B000ED8AE /* PrimeModal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E6E433928BD138B000ED8AE /* PrimeModal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E432428BD138B000ED8AE /* PrimeModal.framework */; platformFilter = ios; };
+		2E6E433A28BD138B000ED8AE /* PrimeModal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E432428BD138B000ED8AE /* PrimeModal.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E6E434A28BD139C000ED8AE /* FavoritesPrimes.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E434928BD139C000ED8AE /* FavoritesPrimes.docc */; };
 		2E6E435028BD139C000ED8AE /* FavoritesPrimes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E434628BD139C000ED8AE /* FavoritesPrimes.framework */; };
 		2E6E435728BD139C000ED8AE /* FavoritesPrimesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E435628BD139C000ED8AE /* FavoritesPrimesTests.swift */; };
 		2E6E435828BD139C000ED8AE /* FavoritesPrimes.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E6E434828BD139C000ED8AE /* FavoritesPrimes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2E6E435B28BD139C000ED8AE /* FavoritesPrimes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E434628BD139C000ED8AE /* FavoritesPrimes.framework */; };
-		2E6E435C28BD139C000ED8AE /* FavoritesPrimes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E434628BD139C000ED8AE /* FavoritesPrimes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E6E435B28BD139C000ED8AE /* FavoritesPrimes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E434628BD139C000ED8AE /* FavoritesPrimes.framework */; platformFilter = ios; };
+		2E6E435C28BD139C000ED8AE /* FavoritesPrimes.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E434628BD139C000ED8AE /* FavoritesPrimes.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E6E436C28BD13CD000ED8AE /* ComposableArchitecture.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E436B28BD13CD000ED8AE /* ComposableArchitecture.docc */; };
 		2E6E437228BD13CD000ED8AE /* ComposableArchitecture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E436828BD13CD000ED8AE /* ComposableArchitecture.framework */; };
 		2E6E437928BD13CD000ED8AE /* ComposableArchitectureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E437828BD13CD000ED8AE /* ComposableArchitectureTests.swift */; };
 		2E6E437A28BD13CD000ED8AE /* ComposableArchitecture.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E6E436A28BD13CD000ED8AE /* ComposableArchitecture.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2E6E437D28BD13CD000ED8AE /* ComposableArchitecture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E436828BD13CD000ED8AE /* ComposableArchitecture.framework */; };
-		2E6E437E28BD13CD000ED8AE /* ComposableArchitecture.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E436828BD13CD000ED8AE /* ComposableArchitecture.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E6E437D28BD13CD000ED8AE /* ComposableArchitecture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E436828BD13CD000ED8AE /* ComposableArchitecture.framework */; platformFilter = ios; };
+		2E6E437E28BD13CD000ED8AE /* ComposableArchitecture.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E436828BD13CD000ED8AE /* ComposableArchitecture.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E6E438628BD13E7000ED8AE /* ComposableArchitecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E438528BD13E7000ED8AE /* ComposableArchitecture.swift */; };
 		2E6E438828BD157A000ED8AE /* FavoritesPrimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E438728BD157A000ED8AE /* FavoritesPrimes.swift */; };
 		2E6E438A28BD1886000ED8AE /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E438928BD1886000ED8AE /* Counter.swift */; };
 		2E6E438C28BD18D0000ED8AE /* PrimeModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E438B28BD18D0000ED8AE /* PrimeModal.swift */; };
 		2E6E438D28BFAAAA000ED8AE /* FavoritesPrimesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E2BE28AEDF930068A806 /* FavoritesPrimesView.swift */; };
 		2E6E438E28BFAB66000ED8AE /* IsPrimeModalShown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E2B828AED89B0068A806 /* IsPrimeModalShown.swift */; };
-		2E6E438F28BFAD01000ED8AE /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E2B628AED86B0068A806 /* CounterView.swift */; };
+		2E6E438F28BFAD01000ED8AE /* PrimeAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E2B628AED86B0068A806 /* PrimeAlert.swift */; };
 		2E6E439028BFAD2D000ED8AE /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E2BA28AED8EF0068A806 /* Helpers.swift */; };
 		2E6E439128BFAD8E000ED8AE /* WolframAlpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E2BC28AED9160068A806 /* WolframAlpha.swift */; };
 		2E6F7D2928F717470080E598 /* ComposableArchitectureSnapshotTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F7D2828F717470080E598 /* ComposableArchitectureSnapshotTesting.swift */; };
+		2E6F7D2E28F758100080E598 /* CounterView_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F7D2D28F758100080E598 /* CounterView_iOS.swift */; };
+		2E6F7D3028F7586A0080E598 /* CounterView_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6F7D2F28F7586A0080E598 /* CounterView_macOS.swift */; };
 		2E865C3D28F081CB00D26A3A /* ComposableArchitectureTestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E865C3C28F081CB00D26A3A /* ComposableArchitectureTestSupport.swift */; };
 		2E90E28D28AECA670068A806 /* StateManagementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E28C28AECA670068A806 /* StateManagementApp.swift */; };
 		2E90E28F28AECA670068A806 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E90E28E28AECA670068A806 /* ContentView.swift */; };
@@ -203,6 +205,8 @@
 		2E6E438928BD1886000ED8AE /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		2E6E438B28BD18D0000ED8AE /* PrimeModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeModal.swift; sourceTree = "<group>"; };
 		2E6F7D2828F717470080E598 /* ComposableArchitectureSnapshotTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableArchitectureSnapshotTesting.swift; sourceTree = "<group>"; };
+		2E6F7D2D28F758100080E598 /* CounterView_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView_iOS.swift; sourceTree = "<group>"; };
+		2E6F7D2F28F7586A0080E598 /* CounterView_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView_macOS.swift; sourceTree = "<group>"; };
 		2E865C3C28F081CB00D26A3A /* ComposableArchitectureTestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableArchitectureTestSupport.swift; sourceTree = "<group>"; };
 		2E90E28928AECA670068A806 /* StateManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StateManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E90E28C28AECA670068A806 /* StateManagementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateManagementApp.swift; sourceTree = "<group>"; };
@@ -214,7 +218,7 @@
 		2E90E2A328AECA670068A806 /* StateManagementUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StateManagementUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E90E2A728AECA670068A806 /* StateManagementUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateManagementUITests.swift; sourceTree = "<group>"; };
 		2E90E2A928AECA670068A806 /* StateManagementUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateManagementUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		2E90E2B628AED86B0068A806 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		2E90E2B628AED86B0068A806 /* PrimeAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeAlert.swift; sourceTree = "<group>"; };
 		2E90E2B828AED89B0068A806 /* IsPrimeModalShown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsPrimeModalShown.swift; sourceTree = "<group>"; };
 		2E90E2BA28AED8EF0068A806 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		2E90E2BC28AED9160068A806 /* WolframAlpha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WolframAlpha.swift; sourceTree = "<group>"; };
@@ -320,8 +324,10 @@
 				2E6E430328BD1361000ED8AE /* Counter.h */,
 				2E6E430428BD1361000ED8AE /* Counter.docc */,
 				2E6E438928BD1886000ED8AE /* Counter.swift */,
-				2E90E2B628AED86B0068A806 /* CounterView.swift */,
+				2E6F7D2D28F758100080E598 /* CounterView_iOS.swift */,
+				2E6F7D2F28F7586A0080E598 /* CounterView_macOS.swift */,
 				2E90E2BA28AED8EF0068A806 /* Helpers.swift */,
+				2E90E2B628AED86B0068A806 /* PrimeAlert.swift */,
 				2E90E2BC28AED9160068A806 /* WolframAlpha.swift */,
 			);
 			path = Counter;
@@ -884,9 +890,11 @@
 			files = (
 				2E6E438A28BD1886000ED8AE /* Counter.swift in Sources */,
 				2E6E430528BD1361000ED8AE /* Counter.docc in Sources */,
-				2E6E438F28BFAD01000ED8AE /* CounterView.swift in Sources */,
+				2E6E438F28BFAD01000ED8AE /* PrimeAlert.swift in Sources */,
+				2E6F7D3028F7586A0080E598 /* CounterView_macOS.swift in Sources */,
 				2E6E439028BFAD2D000ED8AE /* Helpers.swift in Sources */,
 				2E6E439128BFAD8E000ED8AE /* WolframAlpha.swift in Sources */,
+				2E6F7D2E28F758100080E598 /* CounterView_iOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -999,6 +1007,7 @@
 		};
 		2E6E431528BD1361000ED8AE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 2E6E430028BD1361000ED8AE /* Counter */;
 			targetProxy = 2E6E431428BD1361000ED8AE /* PBXContainerItemProxy */;
 		};
@@ -1014,6 +1023,7 @@
 		};
 		2E6E433828BD138B000ED8AE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 2E6E432328BD138B000ED8AE /* PrimeModal */;
 			targetProxy = 2E6E433728BD138B000ED8AE /* PBXContainerItemProxy */;
 		};
@@ -1029,6 +1039,7 @@
 		};
 		2E6E435A28BD139C000ED8AE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 2E6E434528BD139C000ED8AE /* FavoritesPrimes */;
 			targetProxy = 2E6E435928BD139C000ED8AE /* PBXContainerItemProxy */;
 		};
@@ -1044,6 +1055,7 @@
 		};
 		2E6E437C28BD13CD000ED8AE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 2E6E436728BD13CD000ED8AE /* ComposableArchitecture */;
 			targetProxy = 2E6E437B28BD13CD000ED8AE /* PBXContainerItemProxy */;
 		};
@@ -1082,6 +1094,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lramirezsuarez.pointfree.composable-architecture.Counter";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1112,6 +1127,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lramirezsuarez.pointfree.composable-architecture.Counter";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1176,6 +1194,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lramirezsuarez.pointfree.composable-architecture.PrimeModal";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1206,6 +1227,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lramirezsuarez.pointfree.composable-architecture.PrimeModal";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1270,6 +1294,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lramirezsuarez.pointfree.composable-architecture.FavoritesPrimes";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1300,6 +1327,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lramirezsuarez.pointfree.composable-architecture.FavoritesPrimes";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1364,6 +1394,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lramirezsuarez.pointfree.composable-architecture.ComposableArchitecture";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1394,6 +1427,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lramirezsuarez.pointfree.composable-architecture.ComposableArchitecture";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1574,6 +1610,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lramirezsuarez.pointfree.composable-architecture.StateManagement";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1604,6 +1643,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lramirezsuarez.pointfree.composable-architecture.StateManagement";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

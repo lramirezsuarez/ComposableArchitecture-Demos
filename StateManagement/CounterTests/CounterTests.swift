@@ -8,7 +8,6 @@
 import XCTest
 @testable import Counter
 import ComposableArchitecture
-import SnapshotTesting
 import SwiftUI
 
 class CounterTests: XCTestCase {

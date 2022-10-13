@@ -1,28 +1,14 @@
 //
-//  CounterView.swift
-//  StateManagement
+//  CounterView_iOS.swift
+//  Counter
 //
-//  Created by Luis Alejandro Ramirez Suarez on 18/08/22.
+//  Created by Luis Alejandro Ramirez Suarez on 12/10/22.
 //
 
+#if os(iOS)
 import SwiftUI
 import ComposableArchitecture
 import PrimeModal
-
-public struct PrimeAlert: Identifiable, Equatable {
-    public let n: Int
-    public let prime: Int
-    public var id: Int { self.prime }
-    
-    public init(n: Int, prime: Int) {
-        self.n = n
-        self.prime = prime
-    }
-    
-    public var title: String {
-        return "The \(ordinal(self.n)) prime is \(self.prime)"
-    }
-}
 
 public struct CounterView: View {
     struct State: Equatable {
@@ -83,30 +69,30 @@ public struct CounterView: View {
                 action: { .primeModal($0) })
             )
         }
-        .alert(
-            item: .constant(self.viewStore.value.alertNthPrime)
-        ) { alert in
-            Alert(
-                title: Text(alert.title),
-                dismissButton: .default(Text("Ok")) {
-                    self.viewStore.send(.alertDismissButtonTapped)
-                }
-            )
-        }
-
+               .alert(
+                item: .constant(self.viewStore.value.alertNthPrime)
+               ) { alert in
+                   Alert(
+                    title: Text(alert.title),
+                    dismissButton: .default(Text("Ok")) {
+                        self.viewStore.send(.alertDismissButtonTapped)
+                    }
+                   )
+               }
+        
     }
     
     func nthPrimeButtonAction() {
-//        self.isNthPrimeButtonDisabled = true
-//        nthPrime(self.store.value.count) { nthPrime in
-//            self.isNthPrimeButtonDisabled = false
-//            guard let nthPrime = nthPrime else {
-//                return
-//            }
-//
-//            self.alertNthPrime = true
-//            self.nthPrimeReceived = nthPrime
-//        }
+        //        self.isNthPrimeButtonDisabled = true
+        //        nthPrime(self.store.value.count) { nthPrime in
+        //            self.isNthPrimeButtonDisabled = false
+        //            guard let nthPrime = nthPrime else {
+        //                return
+        //            }
+        //
+        //            self.alertNthPrime = true
+        //            self.nthPrimeReceived = nthPrime
+        //        }
         self.viewStore.send(.nthPrimeButtonTapped)
     }
 }
@@ -116,7 +102,7 @@ extension CounterView.State {
         self.alertNthPrime = counterFeatureState.alertNthPrime
         self.count = counterFeatureState.count
         self.isNthPrimeButtonDisabled = counterFeatureState.isNthPrimeRequestInFlight
-        self.isPrimeModalShown = counterFeatureState.isPrimeModalShown
+        self.isPrimeModalShown = counterFeatureState.isPrimeDetailShown
     }
 }
 
@@ -134,18 +120,8 @@ extension CounterFeatureAction {
         case .isPrimeButtonTapped:
             self = .counter(.isPrimeButtonTapped)
         case .primeModalDismissed:
-            self = .counter(.primeModalDismissed)
+            self = .counter(.primeDetailDismissed)
         }
     }
 }
-
-//struct CounterView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CounterView(
-//            store: Store<CounterViewState, CounterViewAction>(
-//                initialValue: (1_000_000, []),
-//                reducer: counterViewReducer
-//            )
-//        )
-//    }
-//}
+#endif

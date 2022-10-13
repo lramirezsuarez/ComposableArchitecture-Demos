@@ -13,25 +13,25 @@ public struct CounterFeatureState: Equatable {
     public var count: Int
     public var favoritePrimes: [Int]
     public var isNthPrimeRequestInFlight: Bool
-    public var isPrimeModalShown: Bool
+    public var isPrimeDetailShown: Bool
     
     public init(
         alertNthPrime: PrimeAlert? = nil,
         count: Int = 0,
         favoritePrimes: [Int] = [],
         isNthPrimeRequestInFlight: Bool = false,
-        isPrimeModalShown: Bool = false
+        isPrimeDetailShown: Bool = false
     ) {
         self.alertNthPrime = alertNthPrime
         self.count = count
         self.favoritePrimes = favoritePrimes
         self.isNthPrimeRequestInFlight = isNthPrimeRequestInFlight
-        self.isPrimeModalShown = isPrimeModalShown
+        self.isPrimeDetailShown = isPrimeDetailShown
     }
     
     var counter: CounterState {
-        get { (self.alertNthPrime, self.count, self.isNthPrimeRequestInFlight, self.isPrimeModalShown) }
-        set { (self.alertNthPrime, self.count, self.isNthPrimeRequestInFlight, self.isPrimeModalShown) = newValue }
+        get { (self.alertNthPrime, self.count, self.isNthPrimeRequestInFlight, self.isPrimeDetailShown) }
+        set { (self.alertNthPrime, self.count, self.isNthPrimeRequestInFlight, self.isPrimeDetailShown) = newValue }
     }
     
     var primeModal: PrimeModalState {
@@ -76,10 +76,10 @@ public enum CounterAction: Equatable {
     case nthPrimeResponse(Int?)
     case alertDismissButtonTapped
     case isPrimeButtonTapped
-    case primeModalDismissed
+    case primeDetailDismissed
 }
 
-public typealias CounterState = (alertNthPrime: PrimeAlert?, count: Int, isNthPrimeRequestInFlight: Bool, isPrimeModalShown: Bool)
+public typealias CounterState = (alertNthPrime: PrimeAlert?, count: Int, isNthPrimeRequestInFlight: Bool, isPrimeDetailShown: Bool)
 
 public func counterReducer(state: inout CounterState, action: CounterAction, environment: CounterEnvironment) -> [Effect<CounterAction>] {
     switch action {
@@ -106,11 +106,11 @@ public func counterReducer(state: inout CounterState, action: CounterAction, env
         state.alertNthPrime = nil
         return []
     case .isPrimeButtonTapped:
-        state.isPrimeModalShown = true
+        state.isPrimeDetailShown = true
         return []
         
-    case .primeModalDismissed:
-        state.isPrimeModalShown = false
+    case .primeDetailDismissed:
+        state.isPrimeDetailShown = false
         return []
     }
 }

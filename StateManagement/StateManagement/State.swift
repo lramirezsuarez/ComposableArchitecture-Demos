@@ -15,7 +15,7 @@ struct AppState: Equatable {
     var activityFeed: [Activity] = []
     var alertNthPrime: PrimeAlert? = nil
     var isNthPrimeRequestInFlight: Bool = false
-    var isPrimeModalShown: Bool = false
+    var isPrimeDetailShown: Bool = false
     
     struct Activity: Equatable {
         let timestamp: Date
@@ -51,12 +51,12 @@ extension AppState {
                 count: self.count,
                 favoritePrimes: self.favoritesPrimes,
                 isNthPrimeRequestInFlight: self.isNthPrimeRequestInFlight,
-                isPrimeModalShown: self.isPrimeModalShown)
+                isPrimeDetailShown: self.isPrimeDetailShown)
         }
         set {
             self.alertNthPrime = newValue.alertNthPrime
             self.isNthPrimeRequestInFlight = newValue.isNthPrimeRequestInFlight
-            self.isPrimeModalShown = newValue.isPrimeModalShown
+            self.isPrimeDetailShown = newValue.isPrimeDetailShown
             self.count = newValue.count
             self.favoritesPrimes = newValue.favoritePrimes
         }
