@@ -41,21 +41,21 @@ public struct CounterView: View {
         VStack {
             HStack {
                 Button("-") { self.viewStore.send(.decrementTap) }
-                Text("\(self.viewStore.value.count)")
+                Text("\(self.viewStore.count)")
                 Button("+") { self.viewStore.send(.incrementTap) }
             }
             HStack {
                 Button("Is this prime?") { self.viewStore.send(.isPrimeButtonTapped) }
             }
             HStack {
-                Button("What is the \(PrimeAlert.ordinal(self.viewStore.value.count)) prime?") { nthPrimeButtonAction() }
-                .disabled(self.viewStore.value.isNthPrimeButtonDisabled)
+                Button("What is the \(PrimeAlert.ordinal(self.viewStore.count)) prime?") { nthPrimeButtonAction() }
+                .disabled(self.viewStore.isNthPrimeButtonDisabled)
             }
         }
         .popover(
-            isPresented: Binding(
-                get: { self.viewStore.value.isPrimePopoverShown },
-                set: { _ in self.viewStore.send(.primePopoverDismissed) }
+            isPresented: self.viewStore.binding(
+                get: \.isPrimePopoverShown,
+                send: .primePopoverDismissed
             )
         ) {
             IsPrimeModalShown(store: self.store.scope(
@@ -64,7 +64,7 @@ public struct CounterView: View {
             )
         }
                .alert(
-                item: .constant(self.viewStore.value.alertNthPrime)
+                item: .constant(self.viewStore.alertNthPrime)
                ) { alert in
                    Alert(
                     title: Text(alert.title),

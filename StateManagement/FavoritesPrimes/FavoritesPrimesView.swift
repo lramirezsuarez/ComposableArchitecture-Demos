@@ -19,7 +19,7 @@ public struct FavoritesPrimesView: View {
     
     public var body: some View {
         List {
-            ForEach(self.viewStore.value.favoritePrimes, id: \.self) { prime in
+            ForEach(self.viewStore.favoritePrimes, id: \.self) { prime in
                 Button("\(prime)") {
                     self.viewStore.send(.primeButtonTapped(prime))
                 }
@@ -55,13 +55,14 @@ public struct FavoritesPrimesView: View {
                 }
             }
         }
-        .alert(item: .constant(self.viewStore.value.alertNthPrime)) { alert in
-            Alert(title: Text(alert.title),
-                  dismissButton: .default(Text("Ok"))  {
-                self.viewStore.send(.alertDimissButtonTapped)
-            }
+        .alert(
+            //  item: .constant(self.viewStore.alertNthPrime)
+            item: self.viewStore.binding(
+                get: \.alertNthPrime,
+                send: .alertDimissButtonTapped
             )
-            
+        ) { primeAlert in
+            Alert(title: Text(primeAlert.title))
         }
     }
 }

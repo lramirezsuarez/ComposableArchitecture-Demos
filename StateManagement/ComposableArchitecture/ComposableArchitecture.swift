@@ -99,17 +99,43 @@ extension Reducer {
 
 }
 
-
+@dynamicMemberLookup
 public final class ViewStore<Value, Action>: ObservableObject {
     @Published public fileprivate(set) var value: Value
     fileprivate var cancellable: Cancellable?
     public let send: (Action) -> Void
+    
+    public subscript<LocalValue>(dynamicMember keyPath: KeyPath<Value, LocalValue>) -> LocalValue {
+        self.value[keyPath: keyPath]
+    }
     
     public init(initialValue value: Value, send: @escaping (Action) -> Void) {
         self.value = value
         self.send = send
     }
     
+}
+
+extension ViewStore {
+    public func binding<LocalValue>(
+        get: @escaping (Value) -> LocalValue,
+        send action: Action
+    ) -> Binding<LocalValue> {
+        Binding(
+            get: { get(self.value) },
+            set: { _ in self.send(action) }
+        )
+    }
+    
+    public func binding<LocalValue>(
+        get: @escaping (Value) -> LocalValue,
+        send toAction: @escaping (LocalValue) -> Action
+    ) -> Binding<LocalValue> {
+        Binding(
+            get: { get(self.value) },
+            set: { self.send(toAction($0)) }
+        )
+    }
 }
 
 extension Store where Value: Equatable {
@@ -201,58 +227,6 @@ extension Reducer {
         self.reducer(&value, action, environment)
     }
 }
-
-//public func combine<Value, Action, Environment>(
-//    _ reducers: Reducer<Value, Action, Environment>...
-//) -> Reducer<Value, Action, Environment> {
-//    return Reducer { value, action, environment in
-//        let effects = reducers.flatMap { $0(&value, action, environment) }
-//        return effects
-//    }
-//}
-
-//public func pullback<GlobalValue, LocalValue, GlobalAction, LocalAction, GlobalEnvironment, LocalEnvironment>(
-//    _ reducer: Reducer<LocalValue, LocalAction, LocalEnvironment>,
-//    value: WritableKeyPath<GlobalValue, LocalValue>,
-//    action: WritableKeyPath<GlobalAction, LocalAction?>,
-//    environment: @escaping (GlobalEnvironment) -> LocalEnvironment
-//) -> Reducer<GlobalValue, GlobalAction, GlobalEnvironment> {
-//    return .init{ globalValue, globalAction, globalEnvironment in
-//        guard let localAction = globalAction[keyPath: action] else { return [] }
-//        let localEffects = reducer(&globalValue[keyPath: value], localAction, environment(globalEnvironment))
-//        return localEffects.map { localEffect in
-//            localEffect.map { localAction -> GlobalAction in
-//                var globalAction = globalAction
-//                globalAction[keyPath: action] = localAction
-//                return globalAction
-//
-//            }
-//            .eraseToEffect()
-////            Effect { callback in
-////                localEffect.run { localAction in
-////                    var globalAction = globalAction
-////                    globalAction[keyPath: action] = localAction
-////                    callback(globalAction)
-////                }
-////            }
-//        }
-//    }
-//}
-
-//public func logging<Value, Action, Environment>(
-//    _ reducer: Reducer<Value, Action, Environment>
-//) -> Reducer<Value, Action, Environment> {
-//    return .init { value, action, environment in
-//        let effects = reducer(&value, action, environment)
-//        let newValue = value
-//        return [.fireAndForget {
-//            print("Action: \(action)")
-//            print("Value: ")
-//            dump(newValue)
-//            print("----")
-//        }] + effects
-//    }
-//}
 
 extension Effect {
     public static func fireAndForget(work: @escaping () -> Void) -> Effect {

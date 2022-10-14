@@ -27,7 +27,7 @@ public struct IsPrimeModalShown: View {
     
     public var body: some View {
         VStack {
-            Text("The number \(self.viewStore.value.count) \(isPrime() ? "Is Prime" : "Is Not Prime")")
+            Text("The number \(self.viewStore.count) \(isPrime() ? "Is Prime" : "Is Not Prime")")
             if isPrime() {
                 Button(action: { self.addRemoveFavoritePrime() }) {
                     Text("\(primeInFavorites() ? "Remove from" : "Save to") favorites primes")
@@ -37,12 +37,12 @@ public struct IsPrimeModalShown: View {
     }
     
     func isPrime() -> Bool {
-        let isPrime = self.viewStore.value.count > 1 && !(2..<self.viewStore.value.count).contains { self.viewStore.value.count % $0 == 0 }
+        let isPrime = self.viewStore.count > 1 && !(2..<self.viewStore.count).contains { self.viewStore.count % $0 == 0 }
         return isPrime
     }
     
     func primeInFavorites() -> Bool {
-        return self.viewStore.value.isFavorite
+        return self.viewStore.isFavorite
     }
     
     func addRemoveFavoritePrime() {

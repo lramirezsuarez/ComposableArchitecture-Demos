@@ -44,7 +44,7 @@ public struct CounterView: View {
                 Button(action: { self.viewStore.send(.decrementTap) }) {
                     Image(systemName: "minus")
                 }
-                Text("\(self.viewStore.value.count)")
+                Text("\(self.viewStore.count)")
                 Button(action: { self.viewStore.send(.incrementTap) }) {
                     Image(systemName: "plus")
                 }
@@ -56,29 +56,31 @@ public struct CounterView: View {
             }.padding()
             HStack {
                 Button(action: { nthPrimeButtonAction() }) {
-                    Text("What is the \(PrimeAlert.ordinal(self.viewStore.value.count)) prime?")
+                    Text("What is the \(PrimeAlert.ordinal(self.viewStore.count)) prime?")
                 }
-                .disabled(self.viewStore.value.isNthPrimeButtonDisabled)
+                .disabled(self.viewStore.isNthPrimeButtonDisabled)
             }.padding()
         }
         .font(.title)
         .navigationBarTitle("Counter Demo")
-        .sheet(isPresented: .constant(self.viewStore.value.isPrimeModalShown),
-               onDismiss: { self.viewStore.send(.primeModalDismissed) }) {
+        .sheet(
+            isPresented: self.viewStore.binding(
+                get: \.isPrimeModalShown,
+                send: Action.primeModalDismissed
+            )
+        ) {
             IsPrimeModalShown(store: self.store.scope(
                 value: { PrimeModalState(count: $0.count, favoritesPrimes: $0.favoritePrimes) },
                 action: { .primeModal($0) })
             )
         }
                .alert(
-                item: .constant(self.viewStore.value.alertNthPrime)
+                item: self.viewStore.binding(
+                    get: \.alertNthPrime,
+                    send: .alertDismissButtonTapped
+                )
                ) { alert in
-                   Alert(
-                    title: Text(alert.title),
-                    dismissButton: .default(Text("Ok")) {
-                        self.viewStore.send(.alertDismissButtonTapped)
-                    }
-                   )
+                   Alert(title: Text(alert.title))
                }
         
     }
