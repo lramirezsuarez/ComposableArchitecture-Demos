@@ -88,6 +88,17 @@
                ReferencedContainer = "container:StateManagement.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2ECCF0FF28F9943D009A262D"
+               BuildableName = "PrimeAlertTests.xctest"
+               BlueprintName = "PrimeAlertTests"
+               ReferencedContainer = "container:StateManagement.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

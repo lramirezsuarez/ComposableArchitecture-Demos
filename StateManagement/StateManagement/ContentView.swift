@@ -28,8 +28,7 @@ struct ContentView: View {
                     value:  { FavoritePrimeState(alertNthPrime: nil, favoritePrimes: $0.favoritesPrimes) },
                     action: { .favoritesPrimes($0) })))
             }
-            #if os(macOS)
-            #else
+            #if os(iOS)
             .navigationBarTitle("State Management")
             #endif
         }

@@ -48,7 +48,7 @@ public struct CounterView: View {
                 Button("Is this prime?") { self.viewStore.send(.isPrimeButtonTapped) }
             }
             HStack {
-                Button("What is the \(ordinal(self.viewStore.value.count)) prime?") { nthPrimeButtonAction() }
+                Button("What is the \(PrimeAlert.ordinal(self.viewStore.value.count)) prime?") { nthPrimeButtonAction() }
                 .disabled(self.viewStore.value.isNthPrimeButtonDisabled)
             }
         }

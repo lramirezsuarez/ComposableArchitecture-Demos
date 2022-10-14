@@ -7,6 +7,7 @@
 
 import Counter
 import FavoritesPrimes
+import PrimeAlert
 
 struct AppState: Equatable {
     var count: Int = 0

@@ -17,13 +17,16 @@ struct StateManagementApp: App {
             ContentView(
                 store: .init(
                     initialValue: .init(),
-                    reducer: with(
-                        appReducer,
-                        compose(
-                            logging,
-                            activityFeed
-                        )
-                    ),
+                    reducer: appReducer
+                        .activityFeed()
+                        .logging(),
+//                    reducer: with(
+//                        appReducer,
+//                        compose(
+//                            logging,
+//                            activityFeed
+//                        )
+//                    ),
                     environment: AppEnvironment(fileClient: .live, nthPrime: Counter.nthPrime, offlineNthPrime: Counter.offlineNthPrime)
                 )
             )

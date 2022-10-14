@@ -7,6 +7,7 @@
 
 import ComposableArchitecture
 import PrimeModal
+import PrimeAlert
 
 public struct CounterFeatureState: Equatable {
     public var alertNthPrime: PrimeAlert?
@@ -81,7 +82,7 @@ public enum CounterAction: Equatable {
 
 public typealias CounterState = (alertNthPrime: PrimeAlert?, count: Int, isNthPrimeRequestInFlight: Bool, isPrimeDetailShown: Bool)
 
-public func counterReducer(state: inout CounterState, action: CounterAction, environment: CounterEnvironment) -> [Effect<CounterAction>] {
+public let counterReducer = Reducer<CounterState, CounterAction, CounterEnvironment> { state, action, environment in
     switch action {
     case .decrementTap:
         state.count -= 1
@@ -128,7 +129,7 @@ public typealias CounterEnvironment = (Int) -> Effect<Int?>
 //let mock = { (Int) in Effect.sync { 17 }}
 //#endif
 
-public let counterViewReducer: Reducer<CounterFeatureState, CounterFeatureAction, CounterEnvironment> = combine(
-    pullback(counterReducer, value: \CounterFeatureState.counter, action: \CounterFeatureAction.counter, environment: { $0 }),
-    pullback(primeModalReducer, value: \.primeModal, action: \.primeModal, environment: { _ in () })
+public let counterFeatureReducer = Reducer.combine(
+    counterReducer.pullback(value: \CounterFeatureState.counter, action: \CounterFeatureAction.counter, environment: { $0 }),
+    primeModalReducer.pullback(value: \.primeModal, action: \CounterFeatureAction.primeModal, environment: { _ in () })
 )

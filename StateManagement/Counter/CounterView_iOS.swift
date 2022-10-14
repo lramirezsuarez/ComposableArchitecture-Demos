@@ -9,6 +9,7 @@
 import SwiftUI
 import ComposableArchitecture
 import PrimeModal
+import PrimeAlert
 
 public struct CounterView: View {
     struct State: Equatable {
@@ -55,7 +56,7 @@ public struct CounterView: View {
             }.padding()
             HStack {
                 Button(action: { nthPrimeButtonAction() }) {
-                    Text("What is the \(ordinal(self.viewStore.value.count)) prime?")
+                    Text("What is the \(PrimeAlert.ordinal(self.viewStore.value.count)) prime?")
                 }
                 .disabled(self.viewStore.value.isNthPrimeButtonDisabled)
             }.padding()
